@@ -39,8 +39,8 @@ tree /f /a | clip
 
 ### Windows
 ```
-compile\main
-run\main
+.\compile\main
+../co\run\main
 ```
 ### Linux (or Bash)
 ```
