@@ -1,9 +1,11 @@
-// #include "adt/boolean/boolean.h"
 #include "adt/player/player.h"
-#include "adt/tower/tower.h"
+#include "adt/building/building.h"
 #include <stdio.h>
 
 int main() {
+  Player player1, player2;
+  PlayerDataInput(&player1);
+  PlayerDataInput(&player2);
   printf("halo halo saya adalah program main yang sederhana, masukkan n: \n");
   int n;
   scanf("%d", &n);

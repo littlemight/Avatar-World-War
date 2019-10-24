@@ -1,33 +1,32 @@
-#ifndef MATRIKS_H
-#define MATRIKS_H
+#ifndef Matrix_H
+#define Matrix_H
 
 #include "../boolean/boolean.h"
-#include "../point/point.h"
+#include "../Point/Point.h"
 
-#define NBrs 20 // sumbu x
-#define NKol 30 // sumbu y
-#define Nil 0 // nilai dummy elemen matriks
+#define NMaxSumbuX 20 // sumbu x
+#define NMaxSumbuY 30 // sumbu y
+#define Nil 0 // nilai dummy elemen Matrix
 
 typedef int indeks;
 typedef int ElType;
 typedef struct {
-    ElType Mem[NBrs+1][NKol+1];
-} MATRIKS;
+    ElType Mem[NMaxSumbuY+1][NMaxSumbuX+1];
+} Matrix;
 
 #define Elmt(M,i,j) (M).Mem[(i)][(j)]
 
 
+void MakeMatrix (Matrix *M);
 
-void MakeMATRIKS (MATRIKS *M);
+boolean IsPointValid (Point P);
 
-boolean IsPOINTValid (POINT P);
+// void CopyMatrix (Matrix MIn, Matrix * MHsl);
 
-// void CopyMATRIKS (MATRIKS MIn, MATRIKS * MHsl);
+ElType NilaiMatrixDariPoint (Matrix * M, Point P);
 
-ElType NilaiMATRIKSDariPOINT (MATRIKS * M, POINT P);
+void TulisMatrix (Matrix M);
 
-void TulisMATRIKS (MATRIKS M);
-
-int NBBuildingMATRIKS (MATRIKS M);
+int NBBuildingMatrix (Matrix M);
 
 #endif

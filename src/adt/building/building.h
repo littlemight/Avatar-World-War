@@ -1,3 +1,6 @@
+#ifndef Building_H
+#define Building_H
+
 #include "../boolean/boolean.h"
 
 #define MaxBuilding 9999;
@@ -10,3 +13,6 @@ typedef struct {
     int maxTroops; // ini perlu struct khusus
     boolean defense;
 } Building;
+
+
+#endif

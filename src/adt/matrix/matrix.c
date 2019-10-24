@@ -1,43 +1,43 @@
 #include <stdio.h>
-#include "matrix.h"
+#include "Matrix.h"
 
-void MakeMATRIKS (MATRIKS *M){
-  for(int i = 1; i <= NBrs; i++){
-    for(int j = 1; j <= NKol; j++){
+void MakeMatrix (Matrix *M){
+  for(int i = 1; i <= NSumbuY; i++){
+    for(int j = 1; j <= NSumbuX; j++){
       Elmt(*M, i , j) = Nil;
     }
   }
 }
 
-// void CopyMATRIKS (MATRIKS MIn, MATRIKS * MHsl){
-//   for ( int i = GetFirstIdxBrs(MIn); i <= NBrsEff(MIn); i ++ ){ 
-//     for ( int j = GetFirstIdxKol(MIn); j <= NKolEff(MIn); j ++ ){
+// void CopyMatrix (Matrix MIn, Matrix * MHsl){
+//   for ( int i = GetFirstIdxBrs(MIn); i <= NSumbuYEff(MIn); i ++ ){ 
+//     for ( int j = GetFirstIdxKol(MIn); j <= NSumbuXEff(MIn); j ++ ){
 //       Elmt(*MHsl, i , j) = Elmt(MIn, i ,j);
 //     }
 //   }
 // }
 
-boolean IsPOINTValid (POINT P){
-  return ( Absis(P) >= 1 && Absis(P) <= NBrs && Ordinat(P) >= 1 && Ordinat(P) <= NKol );
+boolean IsPointValid (Point P){
+  return ( Absis(P) >= 1 && Absis(P) <= NSumbuY && Ordinat(P) >= 1 && Ordinat(P) <= NSumbuX );
 }
 
-ElType NilaiMATRIKSDariPOINT (MATRIKS * M, POINT P){
+ElType NilaiMatrixDariPoint (Matrix * M, Point P){
   return ( Elmt(*M, Absis(P), Ordinat(P)) );
 }
 
-void TulisMATRIKS (MATRIKS M){
-  for ( int i = 1; i <= NBrs; i ++ ){ 
-    for ( int j = 1; j <= NKol; j ++ ){
+void TulisMatrix (Matrix M){
+  for ( int i = 1; i <= NSumbuY; i ++ ){ 
+    for ( int j = 1; j <= NSumbuX; j ++ ){
       printf("%d", Elmt(M, i, j));
     }
     printf("\n");
   }
 }
 
-int NBBuildingMATRIKS (MATRIKS M){
+int NBBuildingMatrix (Matrix M){
   int count = 0;
-  for(int i = 1; i <= NBrs; i ++ ){
-    for(int j = 1; j <= NKol; j ++ ){
+  for(int i = 1; i <= NSumbuY; i ++ ){
+    for(int j = 1; j <= NSumbuX; j ++ ){
       if (Elmt(M, i, j) != 0){
         count ++;
       }

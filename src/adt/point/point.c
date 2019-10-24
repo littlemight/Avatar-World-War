@@ -1,38 +1,38 @@
-#include "point.h"
+#include "Point.h"
 #include <stdio.h>
 
-POINT MakePOINT (float X, float Y){
-  POINT titik;
+Point MakePoint (float X, float Y){
+  Point titik;
   Absis(titik) = X;
   Ordinat(titik) = Y;
   return titik;
 }
 
-void BacaPOINT (POINT * P){
+void BacaPoint (Point * P){
   float x, y;
   scanf("%f %f", &x, &y);
-  *P = MakePOINT(x,y);
+  *P = MakePoint(x,y);
 }
 
-void TulisPOINT (POINT P){
+void TulisPoint (Point P){
   printf("(%.2f,%.2f)", Absis(P), Ordinat(P));
 }
 
-boolean EQPOINT (POINT P1, POINT P2){
+boolean EQPoint (Point P1, Point P2){
   return ((Absis(P1)==Absis(P2))&&(Ordinat(P1)==Ordinat(P2)));
 }
 
-POINT PlusDelta (POINT P, float deltaX, float deltaY){
-  return MakePOINT(Absis(P)+deltaX, Ordinat(P)+deltaY);
+Point PlusDelta (Point P, float deltaX, float deltaY){
+  return MakePoint(Absis(P)+deltaX, Ordinat(P)+deltaY);
 }
 
-float Panjang (POINT P1, POINT P2){
+float Panjang (Point P1, Point P2){
   float deltaX, deltaY;
   deltaX = Absis(P1) - Absis(P2);
   deltaY = Ordinat(P1) - Ordinat(P2);
   return (sqrt(deltaX * deltaX + deltaY * deltaY));
 }
 
-void Geser (POINT *P, float deltaX, float deltaY){
+void Geser (Point *P, float deltaX, float deltaY){
   *P = PlusDelta(*P, deltaX, deltaY);
 }

@@ -1,5 +1,5 @@
 #include "coordinator.h"
 
-void printMap(MATRIKS M){
+void printMap(Matrix M){
     TulisMATRIKS(M);
 }

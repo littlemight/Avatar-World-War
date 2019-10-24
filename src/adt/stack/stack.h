@@ -1,5 +1,5 @@
-#ifndef stack_H
-#define stack_H
+#ifndef Stack_H
+#define Stack_H
 
 #include "../boolean/boolean.h"
 #include "../gamestate/gamestate.h"
@@ -19,27 +19,13 @@ typedef struct {
 #define InfoTop(S) (S).T[(S).TOP]
 
 void CreateEmpty (Stack *S);
-/* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
-/* Ciri stack kosong : TOP bernilai Nil */
 
-/* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsEmpty (Stack S);
-/* Mengirim true jika Stack kosong: lihat definisi di atas */
-boolean IsFull (Stack S);
-/* Mengirim true jika tabel penampung nilai elemen stack penuh */
+// boolean IsEmpty (Stack S);
 
-/* ************ Menambahkan sebuah elemen ke Stack ************ */
+// boolean IsFull (Stack S);
+
 void Push (Stack * S, infotype X);
-/* Menambahkan X sebagai elemen Stack S. */
-/* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
-/* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 
-/* ************ Menghapus sebuah elemen Stack ************ */
 void Pop (Stack * S, infotype* X);
-/* Menghapus X dari Stack S. */
-/* I.S. S  tidak mungkin kosong */
-/* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
 #endif

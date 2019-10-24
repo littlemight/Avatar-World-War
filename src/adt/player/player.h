@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef Player_H
+#define Player_H
 
 #include "../boolean/boolean.h"
 // #include "../array/array.h"
@@ -8,9 +8,13 @@
 typedef struct {
     int playerNumber;
     char username[50];
-    int nbBuilding; // jumlah tower yang dimiliki player
-    // Queue skill; // jumlah skill yang dimiliki player
+    int nbBuilding; // jumlah tower yang dimiliki Player
+    // Queue skill; // jumlah skill yang dimiliki Player
     // Tower tower[maxtower + 1];
 } Player;
+
+#define PlayerNumber(Player) (Player).playerNumber
+
+void PlayerDataInput(Player *Player);
 
 #endif
