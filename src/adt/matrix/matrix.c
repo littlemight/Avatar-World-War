@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "Matrix.h"
 
-void MakeMatrix (Matrix *M){
+void MakeMatrix(Matrix *M, int NSumbuX, int NSumbuY){
   for(int i = 1; i <= NSumbuY; i++){
     for(int j = 1; j <= NSumbuX; j++){
       Elmt(*M, i , j) = Nil;
@@ -17,8 +17,8 @@ void MakeMatrix (Matrix *M){
 //   }
 // }
 
-boolean IsPointValid (Point P){
-  return ( Absis(P) >= 1 && Absis(P) <= NSumbuY && Ordinat(P) >= 1 && Ordinat(P) <= NSumbuX );
+boolean IsPointValid (Matrix M, Point P){
+  return ( Absis(P) >= 1 && Absis(P) <= NEffSumbuX(M) && Ordinat(P) >= 1 && Ordinat(P) <= NEffSumbuY(M) );
 }
 
 ElType NilaiMatrixDariPoint (Matrix * M, Point P){
@@ -26,9 +26,14 @@ ElType NilaiMatrixDariPoint (Matrix * M, Point P){
 }
 
 void TulisMatrix (Matrix M){
-  for ( int i = 1; i <= NSumbuY; i ++ ){ 
-    for ( int j = 1; j <= NSumbuX; j ++ ){
-      printf("%d", Elmt(M, i, j));
+  for ( int i = 1; i <= NEffSumbuY(M); i ++ ){ 
+    for ( int j = 1; j <= NEffSumbuX(M); j ++ ){
+      if (Elmt(M, i, j) != 0){
+        printf("%d", Elmt(M, i, j));
+      }
+      else {
+        printf(" ");
+      }
     }
     printf("\n");
   }
@@ -36,8 +41,8 @@ void TulisMatrix (Matrix M){
 
 int NBBuildingMatrix (Matrix M){
   int count = 0;
-  for(int i = 1; i <= NSumbuY; i ++ ){
-    for(int j = 1; j <= NSumbuX; j ++ ){
+  for(int i = 1; i <= NEffSumbuY(M); i ++ ){
+    for(int j = 1; j <= NEffSumbuX(M); j ++ ){
       if (Elmt(M, i, j) != 0){
         count ++;
       }

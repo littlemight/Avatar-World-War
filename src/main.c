@@ -1,5 +1,5 @@
-#include "adt/player/player.h"
-#include "adt/building/building.h"
+#include "adt/player/player.c"
+#include "adt/building/building.c"
 #include <stdio.h>
 
 int main() {

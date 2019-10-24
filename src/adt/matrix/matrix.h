@@ -12,14 +12,19 @@ typedef int indeks;
 typedef int ElType;
 typedef struct {
     ElType Mem[NMaxSumbuY+1][NMaxSumbuX+1];
+    int NEffSumbuY;
+    int NEffSumbuY;
 } Matrix;
 
+
+#define NeffSumbuY(M) (M).NeffSumbuY;
+#define NeffSumbuX(M) (M).NeffSumbuX;
 #define Elmt(M,i,j) (M).Mem[(i)][(j)]
 
 
-void MakeMatrix (Matrix *M);
+void MakeMatrix (Matrix *M, int NSumbuX, int NSumbuY);
 
-boolean IsPointValid (Point P);
+boolean IsPointValid (Matrix M, Point P);
 
 // void CopyMatrix (Matrix MIn, Matrix * MHsl);
 
