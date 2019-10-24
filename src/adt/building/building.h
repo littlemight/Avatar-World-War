@@ -1,12 +1,12 @@
 #include "../boolean/boolean.h"
 
-#define MaxTower 9999;
+#define MaxBuilding 9999;
 
 typedef struct {
     int level;
-    Player user;
+    int playerNumber; // 0: ga dimiliki, 1: player 1, 2: player 2
     int nbTroops;
     int addTroops;
     int maxTroops; // ini perlu struct khusus
     boolean defense;
-} Tower;
+} Building;

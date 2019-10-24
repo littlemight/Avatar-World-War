@@ -1,11 +1,16 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include "../boolean/boolean.h"
 // #include "../array/array.h"
-#include "../tower/tower.h"
+#include "../building/building.h"
 
 typedef struct {
+    int playerNumber;
     char username[50];
-    int nbtower; // jumlah tower yang dimiliki player
-    int nbskill; // jumlah skill yang dimiliki player
+    int nbBuilding; // jumlah tower yang dimiliki player
+    // Queue skill; // jumlah skill yang dimiliki player
     // Tower tower[maxtower + 1];
-    // Skill skill[maxskill + 1];
 } Player;
+
+#endif

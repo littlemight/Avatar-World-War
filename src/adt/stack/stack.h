@@ -2,11 +2,12 @@
 #define stack_H
 
 #include "../boolean/boolean.h"
+#include "../gamestate/gamestate.h"
 
 #define Nil 0
-#define MaxEl 10
+#define MaxEl 9999 // asumsi undo tak melebihi 9999 kali
 
-typedef int infotype;
+typedef GameState infotype;
 typedef int address;   /* indeks tabel */
 
 typedef struct {
