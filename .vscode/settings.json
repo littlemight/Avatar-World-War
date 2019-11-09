@@ -1,0 +1,14 @@
+{
+  "files.associations": {
+    "deque": "c",
+    "string": "c",
+    "vector": "c",
+    "stdio.h": "c",
+    "boolean.h": "c",
+    "graph.h": "c",
+    "point.h": "c",
+    "building.h": "c",
+    "mesinkata.h": "c",
+    "cstdlib": "cpp"
+  }
+}

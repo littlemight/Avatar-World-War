@@ -1,49 +1,48 @@
-/* File: point.h */
+/* File: Point.h */
 /* Tanggal: 28 Agustus 2016 */
-/* *** Definisi ABSTRACT DATA TYPE POINT *** */
+/* *** Definisi ABSTRACT DATA TYPE Point *** */
 
 #ifndef POINT_H
 #define POINT_H
 
-#include <bits/stdc++.h>
-using namespace std;
+#include "mesinkata.h"
 
 typedef struct {
-	int X; /* absis   */
-	int Y; /* ordinat */
-} POINT;
+	int R; /* Row   */
+	int C; /* Col */
+} Point;
 
-#define Absis(P) (P).X
-#define Ordinat(P) (P).Y
+#define Row(P) (P).R
+#define Col(P) (P).C
 
-POINT MakePOINT (int X, int Y)
-/* Membentuk sebuah POINT dari komponen-komponennya */
+Point MakePoint (int R, int C)
+/* Membentuk sebuah Point dari komponen-komponennya */
 {
   // KAMUS LOKAL
-  POINT ret;
+  Point ret;
   // ALGORITMA
-  Absis(ret) = X;
-  Ordinat(ret) = Y;
+  Row(ret) = R;
+  Col(ret) = C;
   return ret;
 }
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
-void BacaPOINT (POINT * P) {
-  int X, Y;
-  cin >> X >> Y;
-  Absis((*P)) = X;
-  Ordinat((*P)) = Y;
+void BacaPoint (Point * P) {
+  int R, C;
+  InputInt(&R); InputInt(&C);
+  Row((*P)) = R;
+  Col((*P)) = C;
 }
 
-void TulisPOINT (POINT P)
-/* Nilai P ditulis ke layar dengan format "(X,Y)"
+void TulisPoint (Point P)
+/* Nilai P ditulis ke layar dengan format "(R,C)"
    tanpa spasi, enter, atau karakter lain di depan, belakang,
    atau di antaranya
-   Output X dan Y harus dituliskan dalam bilangan riil dengan 2 angka di belakang koma.
+   Output R dan C harus dituliskan dalam bilangan riil dengan 2 angka di belakang koma.
 */
 {
-  printf("(%d,%d)", Absis(P), Ordinat(P));
+  printf("(%d,%d)", Row(P), Col(P));
 }
 /* I.S. P terdefinisi */
-/* F.S. P tertulis di layar dengan format "(X,Y)" */
+/* F.S. P tertulis di layar dengan format "(R,C)" */
 #endif

@@ -1,0 +1,1 @@
+cls && gcc game.c -o a && a

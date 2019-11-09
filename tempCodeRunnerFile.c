@@ -1,0 +1,3 @@
+
+  // InputKata(&username);
+  // PrintKata(user

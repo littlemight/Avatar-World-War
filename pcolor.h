@@ -12,6 +12,11 @@ print_xxx(c) will print c with xxx color. Import this header to use the declared
 We only provide 8 colors. Feel free to modify/add colors if you want to.
 **/
 
+#ifndef PCOLOR_H
+#define PCOLOR_H
+
+#include <stdio.h>
+
 #define NORMAL "\x1B[0m"
 #define RED "\x1B[31m"
 #define GREEN "\x1B[32m"
@@ -49,3 +54,5 @@ void print_cyan(char c) {
     printf("%s%c", MAGENTA, c);
     printf("%s", NORMAL);
 }
+
+#endif
