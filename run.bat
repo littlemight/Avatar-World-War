@@ -1,0 +1,1 @@
+cls && gcc src/code/adt/*.c src/code/*.c -o bin/game && bin\game
