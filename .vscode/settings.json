@@ -9,6 +9,17 @@
     "point.h": "c",
     "building.h": "c",
     "mesinkata.h": "c",
-    "cstdlib": "cpp"
+    "cstdlib": "cpp",
+    "command.h": "c",
+    "tools.h": "c",
+    "player.h": "c",
+    "arraydin.h": "c",
+    "coordinator.h": "c",
+    "listlinier.h": "c",
+    "library.h": "c",
+    "skill.h": "c",
+    "matrix.h": "c",
+    "limits.h": "c",
+    "stack.h": "c"
   }
 }
