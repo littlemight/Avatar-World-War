@@ -6,6 +6,9 @@
 #include "adt/arraydin.h"
 #include "adt/graph.h"
 #include "adt/matrix.h"
+#include "adt/state.h"
+#include "adt/stack.h"
+#include "adt/mesinkata.h"
 #include "pcolor.h"
 #include "utility.h"
 
@@ -14,30 +17,31 @@ extern Building TOWER[5];
 extern Building FORT[5];
 extern Building VILLAGE[5];
 
-extern TabBuilding ArrBuilding;
-extern Matrix Peta;
-extern Graph G;
-extern Player P[3];
-extern boolean hasAttacked[605];
-extern int N, M, B, curPlayerID;
+extern State S;
+extern Stack UndoStack;
+extern Kata InstantUpgrade;
+extern Kata Shield;
+extern Kata ExtraTurn;
+extern Kata AttackUp;
+extern Kata CriticalHit;
+extern Kata InstantReinforcement;
+extern Kata Barrage;
 
 // /** ======================================== SETUPS  ========================================  **/
 void MakeAllBase();
 
 Building GetBase(Building B, int Level);
 
+void InitKamusSkill();
+
 void LoadInit();
 /** ======================================== ----  ========================================  **/
 
 /** ======================================== PRINT  ========================================  **/
 void PrintPeta();
-
-void PrintPlayerBuildings(int curPlayerID);
-
-void PrintNeighbourBuilding(int BuildID);
-
-void PrintOurBuilding(int BuildID); // mencetak building yang tetangga dan sama ownership
-
+void PrintPlayerBuildings(int curPlayerID); // mencetak semua building pemain
+void PrintNeighbourBuilding(int BuildID); // mencetak semua building yang tetangga dan dimiliki oleh pemilik yg sama
+void PrintOurBuilding(int BuildID); // mencetak building yang tetangga dan dimiliki oleh pemain yg berbeda
 /** ======================================== ----  ========================================  **/
 
 /** ======================================== NEIGHBOURHOOD TOOLS  ========================================  **/

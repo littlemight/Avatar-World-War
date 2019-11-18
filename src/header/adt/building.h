@@ -18,6 +18,7 @@ typedef struct {
   int MaxCap; /** If Troop >= MaxCap, dont regen **/
   boolean Defense;
   Point Pos;
+  boolean HasAttacked;
 } Building;
 
 #define OwnerID(P) (P).OwnerID
@@ -28,11 +29,13 @@ typedef struct {
 #define MaxCap(P) (P).MaxCap
 #define Defense(P) (P).Defense
 #define Pos(P) (P).Pos
+#define HasAttacked(P) (P).HasAttacked
 
+boolean IsEQBuilding(Building B1, Building B2);
 void MakeBaseProperty(Building *B, char Type, int Level, int A, int M, boolean P, int U);
 void MakeBuilding(Building *B, Building Base, int Owner, Point Pos);
 void ChangeBaseProperty(Building *B, Building Base);
 void PrintBuildingType(Building B);
 void PrintBuilding(Building B);
-
+void CopyBuilding(Building Bin, Building *Bout);
 #endif

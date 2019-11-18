@@ -56,6 +56,18 @@ boolean AIsFull(TabBuilding T)
   return (ANbElmt(T) == MaxElement(T));
 }
 
+IdxType Search1(TabBuilding T, AElType X) {
+  int ret;
+  if (ANbElmt(T) == 0) ret = IdxUndef;
+  else {
+    IdxType i = GetFirstIdx(T);
+    while (!IsEQBuilding(AElmt(T, i), X) && i <= GetLastIdx(T)) i++;
+    if (i > GetLastIdx(T)) ret = IdxUndef;
+    else ret = i;
+  }
+  return ret;
+}
+
 // void BacaIsi(TabBuilding *T)
 // {
 //   int n, x;
@@ -85,4 +97,13 @@ void TulisIsiTab(TabBuilding T)
     }
     printf("]");
   }
+}
+
+void CopyTab(TabBuilding Tin, TabBuilding  *Tout) {
+  AMakeEmpty(Tout, MaxElement(Tin));
+  ANeff(*Tout) = ANbElmt(Tin);
+  for (IdxType i = GetFirstIdx(Tin); i <= GetLastIdx(Tin); i++) {
+    CopyBuilding(AElmt(Tin, i), &AElmt(*Tout, i));
+  }
+  // printf("array success copy\n");
 }

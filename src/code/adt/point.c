@@ -30,3 +30,13 @@ void TulisPoint (Point P)
 }
 /* I.S. P terdefinisi */
 /* F.S. P tertulis di layar dengan format "(R,C)" */
+
+boolean IsEQPoint(Point P1, Point P2) {
+  return (Row(P1) == Row(P2) && Col(P1) == Col(P2));
+}
+
+void CopyPoint(Point Pin, Point *Pout) {
+  Row(*Pout) = Row(Pin);
+  Col(*Pout) = Col(Pin);
+  return;
+}

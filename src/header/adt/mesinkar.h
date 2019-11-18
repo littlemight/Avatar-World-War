@@ -16,9 +16,6 @@
 extern char CC;
 extern boolean EOP;
 
-static FILE * pita;
-static int retval;
-
 void ADV();
 boolean START(char* filename);
 

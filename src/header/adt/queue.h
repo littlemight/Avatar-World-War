@@ -13,7 +13,7 @@
 /* Konstanta untuk mendefinisikan addressQueue tak terdefinisi */
 
 /* Definisi elemen dan addressQueue */
-typedef char* infotype;
+typedef Kata infotype;
 typedef int addressQueue;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
@@ -67,7 +67,7 @@ void Del (Queue * Q, infotype * X);
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
-
+void CopySkills(Queue Qin, Queue *Qout);
 // IMPLEMENTASI
 
 #endif

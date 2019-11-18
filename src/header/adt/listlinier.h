@@ -137,4 +137,6 @@ void Konkat1 (List *L1, List *L2, List *L3);
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
 
 int LGetNthInfo(List L, int n);
+void CopyList(List Lin, List *Lout);
+void DealokasiAll(List L);
 #endif

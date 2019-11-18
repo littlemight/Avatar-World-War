@@ -120,3 +120,9 @@ infotypeGraph GetFirstSuccInfo(Graph G, infotypeGraph prec)
 	
 	return Id(Succ(Ps));
 }
+
+void CopyGraph(Graph Gin, Graph *Gout) {
+	(*Gout) = Gin;
+	// printf("graph success copy\n");
+	return;
+}

@@ -3,6 +3,9 @@
 char CC;
 boolean EOP;
 
+static FILE * pita;
+static int retval;
+
 void ADV() {
     retval = fscanf(pita,"%c",&CC);
     EOP = (CC == MARK);

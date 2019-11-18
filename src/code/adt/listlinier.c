@@ -24,7 +24,7 @@ addressList Alokasi (Linfotype X)
   P = (addressList) malloc (sizeof(addressList));
   if (P != NilList) {
     LInfo(P) = X;
-   LNext( P) = NilList;
+    LNext( P) = NilList;
     return P;
   } else return NilList;
 }
@@ -84,7 +84,7 @@ void InsVLast (List *L, Linfotype X)
       while (LNext(cur) != NilList) {
         cur = LNext(cur);
       }
-     LNext( cur) = P;
+      LNext(cur) = P;
     } else {
       LFirst(*L) = P;
     }
@@ -266,4 +266,23 @@ int LGetNthInfo(List L, int n) {
     n--;
   }
   return LInfo(cur);
+}
+
+void CopyList(List Lin, List *Lout) {
+  LCreateEmpty(Lout);
+  addressList cur = LFirst(Lin);
+  while (cur != NilList) {
+    InsVLast(Lout, LInfo(cur));
+    cur = LNext(cur);
+  }
+  // printf("list success copy\n");
+}
+
+void DealokasiAll(List L) {
+  addressList cur = LFirst(L);
+  while (cur != NilList) {
+    addressList nex = LNext(cur);
+    Dealokasi(&cur);
+    cur = nex;
+  }
 }

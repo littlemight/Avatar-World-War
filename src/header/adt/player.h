@@ -6,10 +6,10 @@
 #include "queue.h"
 
 typedef struct {
-  Kata Username;
+  Kata Username; // copy udah
   int PlayerID; // 1 itu player1, 2 itu player2
-  List Buildings;
-  Queue Skills; // queue of skill yang dimiliki
+  List Buildings; // udh bikin copy sama free
+  Queue Skills; // copy bismillah
   int PShield;
   int PTurn;
   boolean PAttackUp;
@@ -24,5 +24,8 @@ typedef struct {
 #define PTurn(P) (P).PTurn
 #define PAttackUp(P) (P).PAttackUp
 #define PCriticalHit(P) (P).PCriticalHit
+
+void PCreateEmpty(Player *P);
+void CopyPlayer(Player Pin, Player *Pout);
 
 #endif

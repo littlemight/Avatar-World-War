@@ -5,13 +5,10 @@
 int main() {
   clear();
   MakeAllBase();
-  STARTKATA(NULL);
-
   STARTKATA("data/config.dat");
   LoadInit();
-  ADV();
   TOSTDIN();
-  
+
   // Kata filename;
   // printf("Masukkan nama file: ");
   // InputKata(&filename);

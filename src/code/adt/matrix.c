@@ -11,11 +11,14 @@ void MakeMatrix(Matrix *M, int RIn, int CIn){
 }
 
 void CopyMatrix (Matrix MIn, Matrix * MHsl){
+  REff(*MHsl) = REff(MIn);
+  CEff(*MHsl) = CEff(MIn);
   for (int i = 1; i <= REff(MIn); i++) { 
     for (int j = 1; j <= CEff(MIn); j++) {
       MElmt(*MHsl, i , j) = MElmt(MIn, i ,j);
     }
   }
+  // printf("matrix success copy\n");
 }
 
 boolean IsPointValid (Matrix M, Point P){

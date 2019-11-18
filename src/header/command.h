@@ -8,6 +8,8 @@ void Attack(int PlayerID);
 void LevelUpBuilding(Building *B);
 void LevelUp(int PlayerID);
 void Move(int PlayerID);
+void Skill(int PlayerID);
+void Undo();
 void EndTurn(int PlayerID);
 
 #endif

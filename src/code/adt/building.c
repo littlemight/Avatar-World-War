@@ -1,5 +1,20 @@
 #include "../../header/adt/building.h"
 
+
+boolean IsEQBuilding(Building B1, Building B2) {
+    return (
+      OwnerID(B1) == OwnerID(B2) &&
+      Type(B1) == Type(B2) &&
+      Level(B1) == Level(B2) &&
+      Troop(B1) == Troop(B2) &&
+      Regen(B1) == Regen(B2) &&
+      MaxCap(B1) == MaxCap(B2) &&
+      Defense(B1) == Defense(B2) &&
+      IsEQPoint(Pos(B1), Pos(B2)) &&
+      HasAttacked(B1) == HasAttacked(B2)
+    );
+}
+
 void MakeBaseProperty(Building *B, char Type, int Level, int A, int M, boolean P, int U) {
   OwnerID(*B) = 0;
   Type(*B) = Type;
@@ -8,6 +23,7 @@ void MakeBaseProperty(Building *B, char Type, int Level, int A, int M, boolean P
   Defense(*B) = P;
   MaxCap(*B) = M;
   Troop(*B) = U;
+  HasAttacked(*B) = false;
 }
 
 void MakeBuilding(Building *B, Building Base, int Owner, Point Pos) {
@@ -19,8 +35,8 @@ void MakeBuilding(Building *B, Building Base, int Owner, Point Pos) {
     MaxCap(*B) = Base.MaxCap;
     Defense(*B) = Base.Defense;
 
-    Row(Pos(*B)) = Row(Pos);
-    Col(Pos(*B)) = Col(Pos);
+    HasAttacked(*B) = false;
+    Pos(*B) = MakePoint(Row(Pos), Col(Pos));
 }
 
 void ChangeBaseProperty(Building *B, Building Base) {
@@ -57,4 +73,17 @@ void PrintBuilding(Building B) {
     printf("Position in map: "); 
     TulisPoint((B).Pos);
     // printf(" %d lv. %d", B.Troop, B.Level);
+}
+
+void CopyBuilding(Building Bin, Building *Bout) {
+    OwnerID(*Bout) = OwnerID(Bin);
+    Type(*Bout) = Type(Bin);
+    Level(*Bout) = Level(Bin);
+    Troop(*Bout) = Troop(Bin);
+    Regen(*Bout) = Regen(Bin);
+    MaxCap(*Bout) = MaxCap(Bin);
+    Defense(*Bout) = Defense(Bin);
+    CopyPoint(Pos(Bin), &Pos(*Bout));
+    HasAttacked(*Bout) = HasAttacked(Bin);
+    // printf("building success copy\n");
 }

@@ -61,6 +61,9 @@ void InputKata(Kata* X);
 boolean EQKata(Kata X, Kata Y);
 void PrintKata(Kata X);
 void KataToArrChar(Kata K, char* eff);
-boolean IsArrCharEQ(char a[], char b[]);
+boolean IsStrEQ(char a[], char b[]);
 void TOSTDIN();
+Kata StrToKata(char* Str);
+void CopyKata(Kata Kin, Kata *Kout);
+void CopyStr(char* Cin, char* Cout);
 #endif

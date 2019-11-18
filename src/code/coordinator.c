@@ -6,14 +6,15 @@ void PrintStatus() {
 
     PrintPeta();
     printf("Player ");
-    PrintKata(Username(P[curPlayerID]));
+    PrintKata(Username(P(S)[CurPlayerID(S)]));
     printf("\n");
-    PrintPlayerBuildings(curPlayerID);
+    PrintPlayerBuildings(CurPlayerID(S));
     printf("Skill Available: ");
-    if (QIsEmpty(Skills(P[curPlayerID]))) {
+    if (QIsEmpty(Skills(P(S)[CurPlayerID(S)]))) {
         printf("None\n");
     } else {
-        printf("%s\n", InfoHead(Skills(P[curPlayerID])));
+        PrintKata(InfoHead(Skills(P(S)[CurPlayerID(S)])));
+        printf("\n");
     }
 }
 
@@ -25,45 +26,52 @@ void StartGame() {
         printf(">>> ENTER COMMAND: ");
         InputKata(&command);
         KataToArrChar(command, effCommand);
-        if (IsArrCharEQ(effCommand, "ATTACK")) {
-            Attack(curPlayerID);
+        if (IsStrEQ(effCommand, "ATTACK")) {
+            SPush(&UndoStack, S);
+            Attack(CurPlayerID(S));
             ADV();
-        } else if (IsArrCharEQ(effCommand, "LEVEL_UP")) {
-            LevelUp(curPlayerID);
+        } else if (IsStrEQ(effCommand, "LEVEL_UP")) {
+            SPush(&UndoStack, S);
+            LevelUp(CurPlayerID(S));
             ADV();
-        } else if (IsArrCharEQ(effCommand, "SKILL")) {
+        } else if (IsStrEQ(effCommand, "SKILL")) {
+            SCreateEmpty(&UndoStack);
+            Skill(CurPlayerID(S));
             ADV();
-        } else if (IsArrCharEQ(effCommand, "UNDO")) {
+        } else if (IsStrEQ(effCommand, "UNDO")) {
+            Undo();
             ADV();
-        } else if (IsArrCharEQ(effCommand, "END_TURN")) {
-            EndTurn(curPlayerID);
-        } else if (IsArrCharEQ(effCommand, "SAVE")) {
+        } else if (IsStrEQ(effCommand, "END_TURN")) {
+            EndTurn(CurPlayerID(S));
+        } else if (IsStrEQ(effCommand, "SAVE")) {
             ADV();
-        } else if (IsArrCharEQ(effCommand, "MOVE")) {
-            Move(curPlayerID);
+        } else if (IsStrEQ(effCommand, "MOVE")) {
+            SPush(&UndoStack, S);
+            Move(CurPlayerID(S));
             ADV();
-        } else if (IsArrCharEQ(effCommand, "EXIT")) {
+        } else if (IsStrEQ(effCommand, "EXIT")) {
             ADV();
         } else {
             printf("Command tidak valid.\n");
             ADV();
         }
-    } while (!IsArrCharEQ(effCommand, "EXIT"));
+    } while (!IsStrEQ(effCommand, "EXIT"));
 }
 
 void AvatarWW() {
-    clear();
+    // double sz = (double)sizeof(UndoStack)/1000000;
+    // printf("\tsize of undostack %d bytes | %lf MB\n", sizeof(UndoStack), sz);
+    // printf("\tstack maxel is %d\n", SMaxEl);
+    // ADV();
     Kata username1, username2;
     printf("Masukkan Username Player 1: "); InputKata(&username1);
     printf("Masukkan Username Player 2: "); InputKata(&username2);
-    Username(P[1]) = username1;
-    Username(P[2]) = username2;
-    QCreateEmpty(&Skills(P[1]), 10);
-    QCreateEmpty(&Skills(P[2]), 10);
+    Username(P(S)[1]) = username1;
+    Username(P(S)[2]) = username2;
 
-    Add(&Skills(P[1]), InstantUpgrade);
-    Add(&Skills(P[2]), InstantUpgrade);
+    Add(&Skills(P(S)[1]), InstantUpgrade);
+    Add(&Skills(P(S)[2]), InstantUpgrade);
 
-    curPlayerID = 1;
+    CurPlayerID(S) = 1;
     StartGame();
 }

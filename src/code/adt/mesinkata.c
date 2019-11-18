@@ -139,7 +139,7 @@ void KataToArrChar(Kata K, char* eff) {
   eff[K.Length] = 0;
 }
 
-boolean IsArrCharEQ(char a[], char b[])
+boolean IsStrEQ(char a[], char b[])
 {
    int c = 0;
  
@@ -153,4 +153,44 @@ boolean IsArrCharEQ(char a[], char b[])
       return true;
    else
       return false;
+}
+
+Kata StrToKata(char* Str) {
+  Kata ret;
+  int i = 0;
+  while (true) {
+    ret.TabKata[i + 1] = Str[i];
+    if (Str[i] == '\0') break;
+    i++;
+  }
+  ret.Length = i;
+  ret.TabKata[i + 1] = 0;
+  // printf("disini out\n");
+  // printf("%c %d\n", ret.TabKata[3], ret.Length);
+  // PrintKata(ret); printf("\n");
+  return ret;
+}
+
+void CopyKata(Kata Kin, Kata *Kout) {
+  // printf("disini\n");
+  (*Kout).Length = Kin.Length;
+  // printf("%d\n", (Kout->Length));
+  for (int i = 1; i <= Kin.Length; i++) {
+    (*Kout).TabKata[i] = (Kin).TabKata[i];
+  }
+  (*Kout).TabKata[Kin.Length + 1] = 0;
+  // printf("kata success copy\n");
+  return;
+}
+
+void CopyStr(char *Cin, char *Cout) {
+  int i = 0;
+  printf("here\n");
+  while (1) {
+    Cout[i] = Cin[i];
+    if (Cout[i] == '\0') break;
+    printf("%d\n", i);
+    i++;
+  }
+  printf("str success copy\n");
 }

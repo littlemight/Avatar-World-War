@@ -1,4 +1,6 @@
 #include "../../header/adt/queue.h"
+#include <string.h>
+
 boolean QIsEmpty(Queue Q) {
   return (Head(Q) == Nil && Tail(Q) == Nil);
 }
@@ -29,11 +31,14 @@ void Add(Queue* Q, infotype X) {
   if (QIsEmpty(*Q)) {
     Head(*Q) = 1;
     Tail(*Q) = 1;
+    CopyKata(X, &InfoTail(*Q));
     InfoTail(*Q) = X;
   } else {
     Tail(*Q) = (Tail(*Q) % MaxEl(*Q)) + 1;
-    InfoTail(*Q) = X;
+    CopyKata(X, &InfoTail(*Q));
+    // InfoTail(*Q) = X;
   }
+  // ADV();
 }
 
 void Del(Queue* Q, infotype *X) {
@@ -43,4 +48,18 @@ void Del(Queue* Q, infotype *X) {
   } else {
     Head(*Q) = (Head(*Q) % MaxEl(*Q)) + 1;
   }
+}
+
+void CopySkills(Queue Qin, Queue *Qout) {
+  Head(*Qout) = Head(Qin);
+  Tail(*Qout) = Tail(Qin);
+  MaxEl(*Qout) = MaxEl(Qin);
+  // printf("here copy skill\n");
+  for (int i = Head(*Qout); i <= Tail(*Qout); i++) {
+    // printf("in skills %i\n");
+    // PrintKata((Qin).T[i]);
+    // printf("\n");
+    CopyKata((Qin).T[i], &(*Qout).T[i]);
+  }
+  // printf("skill queue success copy\n");
 }

@@ -6,32 +6,24 @@
 #define _STACK_H
 
 #include "boolean.h"
-#include "player.h"
-#include "building.h"
+#include "state.h"
 
-#define Nil 0
-#define MaxEl 9999
-/* Nil adalah stack dengan elemen kosong . */
+#define NilStack 0
+#define SMaxEl 100
+/* NilStack adalah stack dengan elemen kosong . */
 /* Karena indeks dalam bhs C dimulai 0 maka tabel dg indeks 0 tidak dipakai */
 
-typedef struct {
-  Player P1;
-  Player P2;
-  Building B;
-} State;
-
-
-typedef State infotype;
+typedef State Sinfotype;
 typedef int address;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct {
-  infotype T[MaxEl+1]; /* tabel penyimpan elemen */
+  Sinfotype T[SMaxEl+1]; /* tabel penyimpan elemen */
   address TOP;  /* alamat TOP: elemen puncak */
 } Stack;
-/* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[1]..T[MaxEl] */
+/* Definisi stack S kosong : S.TOP = NilStack */
+/* Elemen yang dipakai menyimpan NilStackai Stack T[1]..T[SMaxEl] */
 /* Jika S adalah Stack maka akses elemen : */
    /* S.T[(S.TOP)] untuk mengakses elemen TOP */
    /* S.TOP adalah alamat elemen TOP */
@@ -40,48 +32,31 @@ typedef struct {
 #define Top(S) (S).TOP
 #define InfoTop(S) (S).T[(S).TOP]
 
-void CreateEmpty(Stack*S);
-boolean IsEmpty(Stack S);
-boolean IsFull(Stack S);
-void Push(Stack *S, infotype X);
-void Pop(Stack *S, infotype *X);
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty (Stack *S){
-  Top(*S) = Nil;
-}
+void SCreateEmpty(Stack *S);
 /* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
-/* Ciri stack kosong : TOP bernilai Nil */
+/* F.S. Membuat sebuah stack S yang kosong berkapasitas SMaxEl */
+/* jadi indeksnya antara 1.. SMaxEl+1 karena 0 tidak dipakai */
+/* Ciri stack kosong : TOP berNilStackai NilStack */
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsEmpty (Stack S){
-  return (Top(S) == Nil);
-}
+boolean SIsEmpty(Stack S);
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
-boolean IsFull (Stack S){
-  return (Top(S) = MaxEl);
-}
 
-/* Mengirim true jika tabel penampung nilai elemen stack penuh */
+boolean SIsFull(Stack S);
+/* Mengirim true jika tabel penampung NilStackai elemen stack penuh */
+
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void Push (Stack * S, infotype X){
-  Top(*S) ++;
-  InfoTop(*S) = X;
-}
+void SPush(Stack *S, Sinfotype X);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void Pop (Stack * S, infotype* X){
-  *X = InfoTop(*S);
-  Top(*S) --;
-}
+void SPop(Stack *S, Sinfotype *X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
-/* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
-
+/* F.S. X adalah NilStackai elemen TOP yang lama, TOP berkurang 1 */
 #endif
