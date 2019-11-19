@@ -99,6 +99,12 @@ void TulisIsiTab(TabBuilding T)
   }
 }
 
+void SavePrintTabBuilding(FILE *file, TabBuilding ArrBuilding) {
+  for (int i = 1; i <= ANbElmt(ArrBuilding); i++) {
+    SavePrintBuilding(file, AElmt(ArrBuilding, i));
+  }
+}
+
 void CopyTab(TabBuilding Tin, TabBuilding  *Tout) {
   AMakeEmpty(Tout, MaxElement(Tin));
   ANeff(*Tout) = ANbElmt(Tin);

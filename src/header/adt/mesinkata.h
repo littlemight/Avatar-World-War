@@ -58,6 +58,7 @@ void InputInt(int* X);
          X = CKata jika CKata adalah integer yang valid, X tidak berubah jika tidak */
 
 void InputKata(Kata* X);
+void KCreateEmpty(Kata *X);
 boolean EQKata(Kata X, Kata Y);
 void PrintKata(Kata X);
 void KataToArrChar(Kata K, char* eff);

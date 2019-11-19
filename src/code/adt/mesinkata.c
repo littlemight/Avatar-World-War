@@ -99,6 +99,10 @@ void InputInt(int* X) {
   }
 }
 
+void KCreateEmpty(Kata *X) {
+  (*X).Length = 0;
+}
+
 void InputKata(Kata* X) {
   ADVKATA();
   for (int i = 1; i <= CKata.Length; i++) {
@@ -185,7 +189,6 @@ void CopyKata(Kata Kin, Kata *Kout) {
 
 void CopyStr(char *Cin, char *Cout) {
   int i = 0;
-  printf("here\n");
   while (1) {
     Cout[i] = Cin[i];
     if (Cout[i] == '\0') break;

@@ -9,9 +9,10 @@ Building FORT[5];
 Building VILLAGE[5];
 
 State S;
+Graph G;
+Matrix Peta;
 Stack UndoStack;
 Kata InstantUpgrade, Shield, ExtraTurn, AttackUp, CriticalHit, InstantReinforcement, Barrage;
-
 
 // /** ======================================== SETUPS  ========================================  **/
 void MakeAllBase()
@@ -66,15 +67,12 @@ void InitKamusSkill() {
     CriticalHit = StrToKata("CH");
     InstantReinforcement = StrToKata("IR");
     Barrage = StrToKata("B");
-
 }
 
 void LoadInit()
 {
     InitKamusSkill();
     TabBuilding ArrBuilding;
-    Matrix Peta;
-    Graph G;
     Player P[3];
     for (int i = 0; i < 3; i++) {
         PCreateEmpty(&P[i]);
@@ -93,14 +91,11 @@ void LoadInit()
             OwnerID = 0;
         else
         {
-            if (i == 1)
-            {
-                // printf("heyyyy\n");
-                InsVLast(&Buildings(P[i]), i);
+            if (i == 1) {
+                AddBuilding(&Buildings(P[i]), i);
             }
-            else
-            {
-                InsVLast(&Buildings(P[i]), i);
+            else {
+                AddBuilding(&Buildings(P[i]), i);
             }
         }
         Kata type;
@@ -142,7 +137,8 @@ void LoadInit()
             }
         }
     }
-    MakeState(ArrBuilding, Peta, G, P, 1, &S);
+    CreateEmptyState(&S);
+    MakeState(ArrBuilding, P, 1, &S);
     SCreateEmpty(&UndoStack);
 }
 /** ======================================== ----  ========================================  **/
@@ -150,31 +146,31 @@ void LoadInit()
 /** ======================================== PRINT  ========================================  **/
 void PrintPeta()
 {
-    for (int i = 0; i <= REff(Peta(S)) + 1; i++)
+    for (int i = 0; i <= REff(Peta) + 1; i++)
     {
-        for (int j = 0; j <= CEff(Peta(S)) + 1; j++)
+        for (int j = 0; j <= CEff(Peta) + 1; j++)
         {
-            if (i == 0 || j == 0 || i == REff(Peta(S)) + 1 || j == CEff(Peta(S)) + 1)
+            if (i == 0 || j == 0 || i == REff(Peta) + 1 || j == CEff(Peta) + 1)
             {
                 printf("*");
                 continue;
             }
-            if (MElmt(Peta(S), i, j) == 0)
+            if (MElmt(Peta, i, j) == 0)
             {
                 printf(" ");
             }
             else
             {
-                switch (AElmt(ArrBuilding(S), MElmt(Peta(S), i, j)).OwnerID)
+                switch (AElmt(ArrBuilding(S), MElmt(Peta, i, j)).OwnerID)
                 {
                 case 0:
-                    printf("%c", AElmt(ArrBuilding(S), MElmt(Peta(S), i, j)).Type);
+                    printf("%c", AElmt(ArrBuilding(S), MElmt(Peta, i, j)).Type);
                     break;
                 case 1:
-                    print_blue(AElmt(ArrBuilding(S), MElmt(Peta(S), i, j)).Type);
+                    print_blue(AElmt(ArrBuilding(S), MElmt(Peta, i, j)).Type);
                     break;
                 case 2:
-                    print_red(AElmt(ArrBuilding(S), MElmt(Peta(S), i, j)).Type);
+                    print_red(AElmt(ArrBuilding(S), MElmt(Peta, i, j)).Type);
                     break;
                 }
             }
@@ -198,7 +194,7 @@ void PrintPlayerBuildings(int curPlayerID)
 
 void PrintNeighbourBuilding(int BuildID)
 { // mencetak building yang tetangga dan beda ownership
-    adrNode Pn = SearchNode(G(S), BuildID);
+    adrNode Pn = SearchNode(G, BuildID);
     adrSuccNode P = Trail(Pn);
     int cnt = 1;
     Building Cur = AElmt(ArrBuilding(S), BuildID);
@@ -222,7 +218,7 @@ void PrintNeighbourBuilding(int BuildID)
 
 void PrintOurBuilding(int BuildID)
 { // mencetak building yang tetangga dan sama ownership
-    adrNode Pn = SearchNode(G(S), BuildID);
+    adrNode Pn = SearchNode(G, BuildID);
     adrSuccNode P = Trail(Pn);
     int cnt = 1;
     Building Cur = AElmt(ArrBuilding(S), BuildID);

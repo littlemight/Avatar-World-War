@@ -39,7 +39,7 @@ void Attack(int PlayerID) {
     HasAttacked(AElmt(ArrBuilding(S), id)) = true;
     
     printf("Daftar bangunan yang dapat diserang:\n");
-    int NDegree = NeighbourDegree(G(S), id);
+    int NDegree = NeighbourDegree(G, id);
     PrintNeighbourBuilding(id);
     if (NDegree == 0) return;
     int pickAttack = 0;
@@ -51,7 +51,7 @@ void Attack(int PlayerID) {
             printf("Pilihan tidak valid.\n");
         }
     } while (pickAttack <= 0 || pickAttack > NDegree);
-    idAttack = GGetNeighbourNthInfo(G(S), id, pickAttack);
+    idAttack = GGetNeighbourNthInfo(G, id, pickAttack);
 
     int ownerAttack = OwnerID(AElmt(ArrBuilding(S), idAttack));
     int atkTroop;
@@ -86,10 +86,10 @@ void Attack(int PlayerID) {
 
         int EnemyID = PlayerID % 2 + 1;
         if (OwnerID(AElmt(ArrBuilding(S), idAttack)) == EnemyID) {
-            DelP(&Buildings(P(S, EnemyID)), idAttack);
+            DelBuilding(&Buildings(P(S, EnemyID)), idAttack);
         }
         OwnerID(AElmt(ArrBuilding(S), idAttack)) = PlayerID;
-        InsVLast(&Buildings(P(S, PlayerID)), idAttack);
+        AddBuilding(&Buildings(P(S, PlayerID)), idAttack);
         
         printf("Bangunan menjadi milikmu!\n");
     }
@@ -140,7 +140,7 @@ void Move(int PlayerID){
     int id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
     
     printf("Daftar bangunan terdekat:\n");
-    int NDegree = OurDegree(G(S), id);
+    int NDegree = OurDegree(G, id);
     PrintOurBuilding(id);
     if (NDegree == 0) return;
     int pickMove = 0;
@@ -159,7 +159,7 @@ void Move(int PlayerID){
         printf("Pasukan tidak cukup.\n");
     }
     else {
-        int idTarget = GGetOurNthInfo(G(S), id, pickMove);
+        int idTarget = GGetOurNthInfo(G, id, pickMove);
         Troop(AElmt(ArrBuilding(S), idTarget)) += moveTroops;
         Troop(AElmt(ArrBuilding(S), idTarget)) -= moveTroops;
         printf("%d pasukan dari ", moveTroops);

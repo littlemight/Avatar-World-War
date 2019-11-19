@@ -1,6 +1,5 @@
 #include "../../header/adt/building.h"
 
-
 boolean IsEQBuilding(Building B1, Building B2) {
     return (
       OwnerID(B1) == OwnerID(B2) &&
@@ -73,6 +72,20 @@ void PrintBuilding(Building B) {
     printf("Position in map: "); 
     TulisPoint((B).Pos);
     // printf(" %d lv. %d", B.Troop, B.Level);
+}
+
+void SavePrintBuilding(FILE *file, Building B) {
+    /*f*/printf("%d %c %d %d %d %d %d %d %d %d %d",
+        OwnerID(B),
+        Type(B),
+        Level(B),
+        Troop(B),
+        Regen(B),
+        MaxCap(B),
+        Defense(B),
+        Row(Pos(B)),
+        Col(Pos(B)),
+        HasAttacked(B));
 }
 
 void CopyBuilding(Building Bin, Building *Bout) {

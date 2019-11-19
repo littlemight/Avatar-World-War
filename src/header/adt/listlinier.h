@@ -59,7 +59,7 @@ void InsVFirst (List *L, Linfotype X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan NilListai X jika alokasi berhasil */
-void InsVLast (List *L, Linfotype X);
+void AddBuilding (List *L, Linfotype X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -94,7 +94,7 @@ void DelFirst (List *L, addressList *P);
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelP (List *L, Linfotype X);
+void DelBuilding (List *L, Linfotype X);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddressList P, dengan LInfo(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */

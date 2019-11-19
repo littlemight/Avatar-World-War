@@ -1,6 +1,7 @@
 #include "../../header/adt/player.h"
 
 void PCreateEmpty(Player *P) {
+    KCreateEmpty(&Username(*P));
     LCreateEmpty(&Buildings(*P));
     QCreateEmpty(&Skills(*P), 10);
     PShield(*P) = PTurn(*P) = 0;

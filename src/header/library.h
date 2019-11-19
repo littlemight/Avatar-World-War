@@ -19,6 +19,8 @@ extern Building VILLAGE[5];
 
 extern State S;
 extern Stack UndoStack;
+extern Matrix Peta;
+extern Graph G;
 extern Kata InstantUpgrade;
 extern Kata Shield;
 extern Kata ExtraTurn;

@@ -71,7 +71,7 @@ void InsVFirst (List *L, Linfotype X)
   }
 }
 
-void InsVLast (List *L, Linfotype X)
+void AddBuilding (List *L, Linfotype X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -166,7 +166,7 @@ void DelFirst (List *L, addressList *P)
 }
 
 
-void DelP (List *L, Linfotype X)
+void DelBuilding (List *L, Linfotype X)
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddressList P, dengan LInfo(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
@@ -275,7 +275,7 @@ void CopyList(List Lin, List *Lout) {
   LCreateEmpty(Lout);
   addressList cur = LFirst(Lin);
   while (cur != NilList) {
-    InsVLast(Lout, LInfo(cur));
+    AddBuilding(Lout, LInfo(cur));
     cur = LNext(cur);
   }
   // printf("list success copy\n");

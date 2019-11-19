@@ -191,6 +191,3 @@ void getSkills(State SBef, State SNow){
   > Sistematika urutan nge add skill 
 
 */
-
-   
-
