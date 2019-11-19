@@ -1,6 +1,8 @@
 #ifndef SKILL_H
 #define SKILL_H
 
+#include "library.h"
+
 void doInstantUpgrade(int PlayerID);
 void doShield(int PlayerID);
 void doExtraTurn(int PlayerID);
