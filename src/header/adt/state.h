@@ -17,7 +17,7 @@ typedef struct {
 #define ArrBuilding(S) (S).ArrBuilding
 #define Peta(S) (S).Peta
 #define G(S) (S).G
-#define P(S) (S).P
+#define P(S, i) (S).P[(i)]
 #define CurPlayerID(S) (S).PlayerID
 
 void MakeState(TabBuilding InpArr, Matrix InpPeta, Graph InpG, Player P[3], int PlayerID, State *S);

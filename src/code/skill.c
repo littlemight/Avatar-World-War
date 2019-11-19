@@ -2,7 +2,7 @@
 #include "../header/library.h"
 
 void doInstantUpgrade(int PlayerID) {
-    addressList cur = LFirst(Buildings(P(S)[PlayerID]));
+    addressList cur = LFirst(Buildings(P(S, PlayerID)));
     while (cur != NilList) {
         Building *ref = &AElmt(ArrBuilding(S), LInfo(cur));
         if (Level(*ref) + 1 <= 4) {
@@ -15,35 +15,35 @@ void doInstantUpgrade(int PlayerID) {
 }
 
 void doShield(int PlayerID) {
-    if (PShield(P(S)[PlayerID]) != 0) {
+    if (PShield(P(S, PlayerID)) != 0) {
         printf("Your shield duration have been maxed out\n");
     } else {
         printf("You now have shield!\n");    
     }
-    PShield(P(S)[PlayerID]) = 2;
+    PShield(P(S, PlayerID)) = 2;
     return;
 }
 
 void doExtraTurn(int PlayerID) {
-    PTurn(P(S)[PlayerID])++;
+    PTurn(P(S, PlayerID))++;
     printf("You have 1 more extra turn.\n");
     return;
 }
 
 void doAttackUp(int PlayerID) {
-    PAttackUp(P(S)[PlayerID]) = true;
+    PAttackUp(P(S, PlayerID)) = true;
     printf("You now have Attack Up!\n");
     return;
 }
 
 void doCriticalHit(int PlayerID) {
-    PCriticalHit(P(S)[PlayerID]) = true;
+    PCriticalHit(P(S, PlayerID)) = true;
     printf("You now have Critical Hit!\n");
     return;
 }
 
 void doInstantReinforcement(int PlayerID) {
-    addressList cur = LFirst(Buildings(P(S)[PlayerID]));
+    addressList cur = LFirst(Buildings(P(S, PlayerID)));
     while (cur != NilList) {
         Troop(AElmt(ArrBuilding(S), LInfo(cur))) += 5;
         cur = LNext(cur);
@@ -54,7 +54,7 @@ void doInstantReinforcement(int PlayerID) {
 
 void doBarrage(int PlayerID) {
     int EnemyID = PlayerID % 2+ 1;
-    addressList cur = LFirst(Buildings(P(S)[EnemyID]));
+    addressList cur = LFirst(Buildings(P(S, EnemyID)));
     while (cur != NilList) {
         Building *ref = &AElmt(ArrBuilding(S), LInfo(cur));
         Troop(*ref) -= 10;

@@ -176,9 +176,8 @@ void DelP (List *L, Linfotype X)
     if (LInfo(LFirst(*L)) == X) {
       LFirst(*L) =LNext( LFirst(*L));
     } else {
-      addressList prev = NilList, cur = LFirst(*L);
+      addressList cur = LFirst(*L);
       while (LNext(cur) != NilList && LInfo(LNext(cur)) != X) {
-        prev = cur;
         cur = LNext( cur);
       }
       if (cur != NilList && LNext(cur) != NilList) {

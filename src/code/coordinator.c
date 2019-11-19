@@ -6,14 +6,14 @@ void PrintStatus() {
 
     PrintPeta();
     printf("Player ");
-    PrintKata(Username(P(S)[CurPlayerID(S)]));
+    PrintKata(Username(P(S, CurPlayerID(S))));
     printf("\n");
     PrintPlayerBuildings(CurPlayerID(S));
     printf("Skill Available: ");
-    if (QIsEmpty(Skills(P(S)[CurPlayerID(S)]))) {
+    if (QIsEmpty(Skills(P(S, CurPlayerID(S))))) {
         printf("None\n");
     } else {
-        PrintKata(InfoHead(Skills(P(S)[CurPlayerID(S)])));
+        PrintKata(InfoHead(Skills(P(S, CurPlayerID(S)))));
         printf("\n");
     }
 }
@@ -66,11 +66,11 @@ void AvatarWW() {
     Kata username1, username2;
     printf("Masukkan Username Player 1: "); InputKata(&username1);
     printf("Masukkan Username Player 2: "); InputKata(&username2);
-    Username(P(S)[1]) = username1;
-    Username(P(S)[2]) = username2;
+    Username(P(S, 1)) = username1;
+    Username(P(S, 2)) = username2;
 
-    Add(&Skills(P(S)[1]), InstantUpgrade);
-    Add(&Skills(P(S)[2]), InstantUpgrade);
+    Add(&Skills(P(S, 1)), InstantUpgrade);
+    Add(&Skills(P(S, 2)), InstantUpgrade);
 
     CurPlayerID(S) = 1;
     StartGame();

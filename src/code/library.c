@@ -79,7 +79,7 @@ void LoadInit()
     for (int i = 0; i < 3; i++) {
         PCreateEmpty(&P[i]);
     }
-    int N, M, B, curPlayerID;
+    int N, M, B;
     InputInt(&N);
     InputInt(&M);
     InputInt(&B);

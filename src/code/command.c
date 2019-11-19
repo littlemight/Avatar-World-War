@@ -3,15 +3,15 @@
 
 float GetMultiplier(int idAttack, int ownerAttack) {
     float multiplier = 1;
-    if (Defense(AElmt(ArrBuilding(S), idAttack)) || PShield(P(S)[ownerAttack])) {
+    if (Defense(AElmt(ArrBuilding(S), idAttack)) || PShield(P(S, ownerAttack))) {
         multiplier = 0.75;
     }
-    if (PAttackUp(P(S)[ownerAttack])) {
+    if (PAttackUp(P(S, ownerAttack))) {
         multiplier = 1;
     }
-    if (PCriticalHit(P(S)[ownerAttack])) {
+    if (PCriticalHit(P(S, ownerAttack))) {
         multiplier = 2;
-        PCriticalHit(P(S)[ownerAttack]) = false;
+        PCriticalHit(P(S, ownerAttack)) = false;
     }
     return multiplier;
 }
@@ -19,7 +19,7 @@ float GetMultiplier(int idAttack, int ownerAttack) {
 void Attack(int PlayerID) {
     PrintPlayerBuildings(PlayerID);
     int pick = 0;
-    int NBuild = NbElmt(Buildings(P(S)[PlayerID]));
+    int NBuild = NbElmt(Buildings(P(S, PlayerID)));
     int id = 0;
     do {
         printf("Bangunan yang digunakan untuk menyerang: ");
@@ -27,14 +27,14 @@ void Attack(int PlayerID) {
         if (pick <= 0 || pick > NBuild) {
             printf("Pilihan tidak valid.\n");
         } else {
-            id = LGetNthInfo(Buildings(P(S)[PlayerID]), pick);
+            id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
             if (HasAttacked(AElmt(ArrBuilding(S), id))) {
                 printf("Bangunan tersebut sudah menyerang dalam giliran ini!\n");
                 pick = 0;   
             }
         }
     } while (pick <= 0 || pick > NBuild);
-    id = LGetNthInfo(Buildings(P(S)[PlayerID]), pick);
+    id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
     HasAttacked(AElmt(ArrBuilding(S), id)) = true;
 
     printf("Daftar bangunan yang dapat diserang:\n");
@@ -85,7 +85,7 @@ void Attack(int PlayerID) {
         OwnerID(AElmt(ArrBuilding(S), idAttack)) = PlayerID;
 
         // disini perlu indeks dari array building dr building nya
-        InsVLast(&Buildings(P(S)[PlayerID]), idAttack);
+        InsVLast(&Buildings(P(S, PlayerID)), idAttack);
         printf("Bangunan menjadi milikmu!\n");
     }
 }
@@ -109,7 +109,7 @@ void LevelUpBuilding(Building * B){
 void LevelUp(int PlayerID){
     PrintPlayerBuildings(PlayerID);
     int pick = 0;
-    int NBuild = NbElmt(Buildings(P(S)[PlayerID]));
+    int NBuild = NbElmt(Buildings(P(S, PlayerID)));
     do {
         printf("Bangunan yang akan di level up: ");
         InputInt(&pick);
@@ -117,14 +117,14 @@ void LevelUp(int PlayerID){
             printf("Pilihan tidak valid.\n");
         }
     } while (pick <= 0 || pick > NBuild);
-    int id = LGetNthInfo(Buildings(P(S)[PlayerID]), pick);
+    int id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
     LevelUpBuilding(&AElmt(ArrBuilding(S), id));
 }
 
 void Move(int PlayerID){
     PrintPlayerBuildings(PlayerID);
     int pick = 0;
-    int NBuild = NbElmt(Buildings(P(S)[PlayerID]));
+    int NBuild = NbElmt(Buildings(P(S, PlayerID)));
     do {
         printf("Bangunan yang digunakan untuk mengirim pasukan: ");
         InputInt(&pick);
@@ -132,7 +132,7 @@ void Move(int PlayerID){
             printf("Pilihan tidak valid.\n");
         }
     } while (pick <= 0 || pick > NBuild);
-    int id = LGetNthInfo(Buildings(P(S)[PlayerID]), pick);
+    int id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
     
     printf("Daftar bangunan terdekat:\n");
     int NDegree = OurDegree(G(S), id);
@@ -168,8 +168,8 @@ void Move(int PlayerID){
 
 
 void Skill(int PlayerID) {
-    Kata cur = InfoHead(Skills(P(S)[PlayerID]));
-    if (QIsEmpty(Skills(P(S)[PlayerID]))) {
+    Kata cur = InfoHead(Skills(P(S, PlayerID)));
+    if (QIsEmpty(Skills(P(S, PlayerID)))) {
         printf("You don't have any skills.\n");
     } else {
         if (EQKata(cur, InstantUpgrade)) {
@@ -187,7 +187,7 @@ void Skill(int PlayerID) {
         } else if (EQKata(cur, Barrage)) {
 
         }
-        Del(&Skills(P(S)[PlayerID]), &cur);
+        Del(&Skills(P(S, PlayerID)), &cur);
     }
 
 }
@@ -204,8 +204,8 @@ void Undo() {
 void EndTurn(int PlayerID){
     // end turn kurang shield, dan update status player lain
     int enemyPlayerID = PlayerID % 2 + 1;
-    if (PShield(P(S)[enemyPlayerID]) > 0){
-        PShield(P(S)[enemyPlayerID]) --;
+    if (PShield(P(S, enemyPlayerID)) > 0){
+        PShield(P(S, enemyPlayerID)) --;
     }
     for (int i = 1; i <= ANbElmt(ArrBuilding(S)); i++) {
         Building *cur = &AElmt(ArrBuilding(S), i);
