@@ -37,5 +37,6 @@ void MakeBuilding(Building *B, Building Base, int Owner, Point Pos);
 void ChangeBaseProperty(Building *B, Building Base);
 void PrintBuildingType(Building B);
 void PrintBuilding(Building B);
+void SavePrintBuilding(FILE *file, Building B); 
 void CopyBuilding(Building Bin, Building *Bout);
 #endif

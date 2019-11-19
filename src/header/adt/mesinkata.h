@@ -60,6 +60,7 @@ void InputInt(int* X);
 void InputKata(Kata* X);
 void KCreateEmpty(Kata *X);
 boolean EQKata(Kata X, Kata Y);
+void SavePrintKata(FILE* file, Kata X);
 void PrintKata(Kata X);
 void KataToArrChar(Kata K, char* eff);
 boolean IsStrEQ(char a[], char b[]);

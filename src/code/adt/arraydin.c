@@ -100,6 +100,7 @@ void TulisIsiTab(TabBuilding T)
 }
 
 void SavePrintTabBuilding(FILE *file, TabBuilding ArrBuilding) {
+  /*f*/printf("%d\n", ANbElmt(ArrBuilding));
   for (int i = 1; i <= ANbElmt(ArrBuilding); i++) {
     SavePrintBuilding(file, AElmt(ArrBuilding, i));
   }

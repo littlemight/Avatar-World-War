@@ -7,7 +7,7 @@
 
 typedef struct {
   Kata Username; // copy udah
-  int PlayerID; // 1 itu player1, 2 itu player2
+  // int PlayerID; // 1 itu player1, 2 itu player2
   List Buildings; // udh bikin copy sama free
   Queue Skills; // copy bismillah
   int PShield;
@@ -17,7 +17,7 @@ typedef struct {
 } Player;
 
 #define Username(P) (P).Username
-#define PlayerID(P) (P).PlayerID
+// #define PlayerID(P) (P).PlayerID
 #define Buildings(P) (P).Buildings
 #define Skills(P) (P).Skills
 #define PShield(P) (P).PShield

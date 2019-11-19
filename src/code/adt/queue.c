@@ -9,7 +9,7 @@ boolean QIsFull(Queue Q) {
   return ((Tail(Q) - Head(Q) + 1) == MaxEl(Q));
 }
 
-int NBElmt(Queue Q) {
+int QNbElmt(Queue Q) {
   if (QIsEmpty(Q)) return 0;
   if (Head(Q) <= Tail(Q)) return (Tail(Q) - Head(Q) + 1);
   return (MaxEl(Q) - Head(Q) + 1 + Tail(Q));
@@ -27,7 +27,14 @@ void DeAlokasi(Queue *Q) {
   MaxEl(*Q) = 0;
 }
 
-void Add(Queue* Q, infotype X) {
+void SavePrintQueue(FILE *file, Queue Q) {
+  /*f*/printf("%d\n", QNbElmt(Q));
+  for (int i = 1; i <= QNbElmt(Q); i++) {
+    SavePrintKata(file, Q.T[i]);
+  }
+}
+
+void QAdd(Queue* Q, infotype X) {
   if (QIsEmpty(*Q)) {
     Head(*Q) = 1;
     Tail(*Q) = 1;
@@ -41,7 +48,7 @@ void Add(Queue* Q, infotype X) {
   // ADV();
 }
 
-void Del(Queue* Q, infotype *X) {
+void QDel(Queue* Q, infotype *X) {
   *X = InfoHead(*Q);
   if (Head(*Q) == Tail(*Q)) {
     Head(*Q) = Tail(*Q) = Nil;

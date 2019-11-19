@@ -75,8 +75,8 @@ void AvatarWW() {
     Username(P(S, 1)) = username1;
     Username(P(S, 2)) = username2;
 
-    Add(&Skills(P(S, 1)), InstantUpgrade);
-    Add(&Skills(P(S, 2)), InstantUpgrade);
+    QAdd(&Skills(P(S, 1)), InstantUpgrade);
+    QAdd(&Skills(P(S, 2)), InstantUpgrade);
 
     CurPlayerID(S) = 1;
     StartGame();

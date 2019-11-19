@@ -10,7 +10,7 @@ void PCreateEmpty(Player *P) {
 
 void CopyPlayer(Player Pin, Player *Pout) {
     CopyKata(Username(Pin), &Username(*Pout));
-    PlayerID(*Pout) = PlayerID(Pin);
+    // PlayerID(*Pout) = PlayerID(Pin);
     CopySkills(Skills(Pin), &Skills(*Pout));
     CopyList(Buildings(Pin), &Buildings(*Pout));
     PShield(*Pout) = PShield(Pin);

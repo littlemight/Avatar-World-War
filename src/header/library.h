@@ -65,7 +65,7 @@ void RegenTroop();
 
 
 // // void GetSkill(Player * P1, Player * P2){ //ngecek apakah dapet skill di akhir tiap move
-// //     if(NbElmt(P2->Buildings == 2)){
+// //     if(LNbElmt(P2->Buildings == 2)){
 
 // //     }
 // //     if(){

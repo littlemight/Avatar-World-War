@@ -19,7 +19,7 @@ float GetMultiplier(int idAttack, int ownerAttack) {
 void Attack(int PlayerID) {
     PrintPlayerBuildings(PlayerID);
     int pick = 0;
-    int NBuild = NbElmt(Buildings(P(S, PlayerID)));
+    int NBuild = LNbElmt(Buildings(P(S, PlayerID)));
     int id = 0;
     do {
         printf("Bangunan yang digunakan untuk menyerang: ");
@@ -114,7 +114,7 @@ void LevelUpBuilding(Building * B){
 void LevelUp(int PlayerID){
     PrintPlayerBuildings(PlayerID);
     int pick = 0;
-    int NBuild = NbElmt(Buildings(P(S, PlayerID)));
+    int NBuild = LNbElmt(Buildings(P(S, PlayerID)));
     do {
         printf("Bangunan yang akan di level up: ");
         InputInt(&pick);
@@ -129,7 +129,7 @@ void LevelUp(int PlayerID){
 void Move(int PlayerID){
     PrintPlayerBuildings(PlayerID);
     int pick = 0;
-    int NBuild = NbElmt(Buildings(P(S, PlayerID)));
+    int NBuild = LNbElmt(Buildings(P(S, PlayerID)));
     do {
         printf("Bangunan yang digunakan untuk mengirim pasukan: ");
         InputInt(&pick);
@@ -192,7 +192,7 @@ void Skill(int PlayerID) {
         } else if (EQKata(cur, Barrage)) {
 
         }
-        Del(&Skills(P(S, PlayerID)), &cur);
+        QDel(&Skills(P(S, PlayerID)), &cur);
     }
 
 }

@@ -67,42 +67,42 @@ void doBarrage(int PlayerID) {
 
 void getShield(State SBef, State SNow){
     // klo stack kosong top nya null kah??
-    if(NbElmt(Buildings(P(SBef, 2)))==3 && NbElmt(Buildings(P(SNow, 2)))==2){
+    if(LNbElmt(Buildings(P(SBef, 2)))==3 && LNbElmt(Buildings(P(SNow, 2)))==2){
         //push ke queue skill p2
-        Add(&(Skills(P(S, 2))), Shield);
+        QAdd(&(Skills(P(S, 2))), Shield);
         printf("Selamat "); PrintKata(Username(P(SNow, 2))); printf(" mendapat skill Shield!!\n");
     }
-    if(NbElmt(Buildings(P(SBef, 1)))==3 && NbElmt(Buildings(P(SNow, 1)))==2){
+    if(LNbElmt(Buildings(P(SBef, 1)))==3 && LNbElmt(Buildings(P(SNow, 1)))==2){
         //push ke queue skill p1
-        Add(&(Skills(P(S, 1))), Shield);
+        QAdd(&(Skills(P(S, 1))), Shield);
         printf("Selamat "); PrintKata(Username(P(SNow, 1))); printf(" mendapat skill Shield!!\n");
     }
     return;
 }
 
 void getAttackUp(State SBef, State SNow){
-    if(NbElmt(Buildings(P(SBef, 1)))==4 && NbElmt(Buildings(P(SNow, 1)))==3){
+    if(LNbElmt(Buildings(P(SBef, 1)))==4 && LNbElmt(Buildings(P(SNow, 1)))==3){
         //push ke queue skill p2
-        Add(&(Skills(P(S, 2))), AttackUp);
+        QAdd(&(Skills(P(S, 2))), AttackUp);
         printf("Selamat "); PrintKata(Username(P(SNow, 2))); printf(" mendapat skill Attack Up!!\n");
     }
-    if(NbElmt(Buildings(P(SBef, 2)))==4 && NbElmt(Buildings(P(SNow, 2)))==3){
+    if(LNbElmt(Buildings(P(SBef, 2)))==4 && LNbElmt(Buildings(P(SNow, 2)))==3){
         //push ke queue skill p1
-        Add(&(Skills(P(S, 1))), AttackUp);
+        QAdd(&(Skills(P(S, 1))), AttackUp);
         printf("Selamat "); PrintKata(Username(P(SNow, 1))); printf(" mendapat skill Attack Up!!\n");
     }
     return;
 }
 
 void getBarrage(State SBef, State SNow){
-    if(NbElmt(Buildings(P(SBef, 2)))==9 && NbElmt(Buildings(P(SNow, 2)))==10){
+    if(LNbElmt(Buildings(P(SBef, 2)))==9 && LNbElmt(Buildings(P(SNow, 2)))==10){
         //push ke queue skill p1
-        Add(&(Skills(P(S, 1))), Barrage);
+        QAdd(&(Skills(P(S, 1))), Barrage);
         printf("Selamat "); PrintKata(Username(P(SNow, 1))); printf(" mendapat skill Barrage!!\n");
     }
-    if(NbElmt(Buildings(P(SBef, 1)))==9 && NbElmt(Buildings(P(SNow, 1)))==10){
+    if(LNbElmt(Buildings(P(SBef, 1)))==9 && LNbElmt(Buildings(P(SNow, 1)))==10){
         //push ke queue skill p2
-        Add(&(Skills(P(S, 2))), Barrage);
+        QAdd(&(Skills(P(S, 2))), Barrage);
         printf("Selamat "); PrintKata(Username(P(SNow, 2))); printf(" mendapat skill Barrage!!\n");
     }
     return;
@@ -120,7 +120,7 @@ void getInstantReinforcement(State SNow){
         }
         if(b){
             //push skill ke p2
-            Add(&(Skills(P(S, 2))), InstantReinforcement);
+            QAdd(&(Skills(P(S, 2))), InstantReinforcement);
             printf("Selamat "); PrintKata(Username(P(SNow, 2))); printf(" mendapat skill Instant Reinforcement!!\n");
         }
     }
@@ -133,7 +133,7 @@ void getInstantReinforcement(State SNow){
         }
         if(b){
             //push skill ke p1
-            Add(&(Skills(P(S, 1))), InstantReinforcement);
+            QAdd(&(Skills(P(S, 1))), InstantReinforcement);
             printf("Selamat "); PrintKata(Username(P(SNow, 1))); printf(" mendapat skill Instant Reinforcement!!\n");
         }
     }
@@ -146,7 +146,7 @@ void getExtraTurn(State SBef, State SNow){
         aL = LLastElmt(Buildings(P(SNow, 2)));
         if(Type(AElmt(ArrBuilding(SNow), LInfo(aL)))=='F' && Search(Buildings(P(SBef, 1)), LInfo(aL))!=NilList){
             //push skill ke p1
-            Add(&(Skills(P(S, 1))), ExtraTurn);
+            QAdd(&(Skills(P(S, 1))), ExtraTurn);
             printf("Selamat "); PrintKata(Username(P(S, 1))); printf(" mendapat skill Extra Turn!!\n");
         }
     }
@@ -154,7 +154,7 @@ void getExtraTurn(State SBef, State SNow){
         aL = LLastElmt(Buildings(P(SNow, 1)));
         if(Type(AElmt(ArrBuilding(SNow), LInfo(aL)))=='F' && Search(Buildings(P(SBef, 2)), LInfo(aL))!=NilList){
             //push skill ke p2
-            Add(&(Skills(P(S, 2))), ExtraTurn);
+            QAdd(&(Skills(P(S, 2))), ExtraTurn);
             printf("Selamat "); PrintKata(Username(P(S, 2))); printf(" mendapat skill Extra Turn!!\n");
         }
     }
@@ -164,12 +164,12 @@ void getExtraTurn(State SBef, State SNow){
 void getCriticalHit(State SBef, State SNow){
     if(PTurn(P(SBef, 1))<PTurn(P(SNow, 1)) && CurPlayerID(SBef) == CurPlayerID(SNow)){
         // //push skill ke p2
-        Add(&(Skills(P(S, 2))), CriticalHit);
+        QAdd(&(Skills(P(S, 2))), CriticalHit);
         printf("Selamat "); PrintKata(Username(P(S, 2))); printf(" mendapat skill Critical Hit!!\n");
     }
     if(PTurn(P(SBef, 2))<PTurn(P(SNow, 2)) && CurPlayerID(SBef) == CurPlayerID(SNow)){
         // //push skill ke p1
-        Add(&(Skills(P(S, 1))), CriticalHit);
+        QAdd(&(Skills(P(S, 1))), CriticalHit);
        printf("Selamat "); PrintKata(Username(P(S, 1))); printf(" mendapat skill Critical Hit!!\n");
     }
 }

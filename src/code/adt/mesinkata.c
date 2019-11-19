@@ -129,6 +129,12 @@ boolean EQKata(Kata X, Kata Y) {
   return valid;
 }
 
+void SavePrintKata(FILE* file, Kata X) { // prints kata tanpa karakter apapun di depan/belakang
+    for (int i = 1; i <= X.Length; i++) {
+      /*f*/printf("%c", X.TabKata[i]);
+    }
+}
+
 void PrintKata(Kata X) { // prints kata tanpa karakter apapun di depan/belakang
     for (int i = 1; i <= X.Length; i++) {
       printf("%c", X.TabKata[i]);

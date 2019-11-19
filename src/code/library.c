@@ -183,7 +183,7 @@ void PrintPlayerBuildings(int curPlayerID)
 {
     printf("Building List:\n");
     addressList cur = LFirst(Buildings(P(S, curPlayerID)));
-    int sz = NbElmt(Buildings(P(S, curPlayerID)));
+    int sz = LNbElmt(Buildings(P(S, curPlayerID)));
     for (int i = 1; i <= sz; i++) {
         printf("%d. ", i);
         PrintBuilding(AElmt(ArrBuilding(S), LInfo(cur)));
