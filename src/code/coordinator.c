@@ -28,21 +28,25 @@ void StartGame() {
         KataToArrChar(command, effCommand);
         if (IsStrEQ(effCommand, "ATTACK")) {
             SPush(&UndoStack, S);
+            State St = InfoTop(UndoStack);
             Attack(CurPlayerID(S));
+            getSkills(St, S);
             ADV();
         } else if (IsStrEQ(effCommand, "LEVEL_UP")) {
             SPush(&UndoStack, S);
+            State St = InfoTop(UndoStack);
             LevelUp(CurPlayerID(S));
+            getSkills(St, S);
             ADV();
         } else if (IsStrEQ(effCommand, "SKILL")) {
             SCreateEmpty(&UndoStack);
+            State St = InfoTop(UndoStack);
             Skill(CurPlayerID(S));
+            getSkills(St, S);
             ADV();
         } else if (IsStrEQ(effCommand, "UNDO")) {
             Undo();
             ADV();
-        } else if (IsStrEQ(effCommand, "END_TURN")) {
-            EndTurn(CurPlayerID(S));
         } else if (IsStrEQ(effCommand, "SAVE")) {
             ADV();
         } else if (IsStrEQ(effCommand, "MOVE")) {
@@ -51,6 +55,8 @@ void StartGame() {
             ADV();
         } else if (IsStrEQ(effCommand, "EXIT")) {
             ADV();
+        } else if (IsStrEQ(effCommand, "END_TURN")) {
+            EndTurn(CurPlayerID(S));
         } else {
             printf("Command tidak valid.\n");
             ADV();

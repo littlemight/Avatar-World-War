@@ -174,6 +174,14 @@ void getCriticalHit(State SBef, State SNow){
     }
 }
 
+void getSkills(State SBef, State SNow){
+    getShield(SBef, SNow);
+    getAttackUp(SBef, SNow);
+    getBarrage(SBef, SNow);
+    getInstantReinforcement(SNow);
+    getExtraTurn(SBef, SNow);
+    getCriticalHit(SBef, SNow);
+}
 /* Ambigu :
   > Instart Reinf. itu setiap turn ada player yg lv 4 semua buildnya? -> maybe checking ny acuma diakhir turn aja (?) bukan per aksi
   > extraturn termasuk bisa di undo ke sebelum ny aapa engga

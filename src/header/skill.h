@@ -18,4 +18,6 @@ void getInstantReinforcement(State SNow);
 void getExtraTurn(State SBef, State SNow);
 void getCriticalHit(State SBef, State SNow);
 
+void getSkills(State SBef, State SNow);
+
 #endif
