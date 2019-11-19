@@ -70,4 +70,6 @@ void QDel (Queue * Q, infotype * X);
 void CopySkills(Queue Qin, Queue *Qout);
 // IMPLEMENTASI
 
+void SavePrintQueue(FILE *file, Queue Q);
+
 #endif
