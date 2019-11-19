@@ -59,4 +59,6 @@ void SPop(Stack *S, Sinfotype *X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah NilStackai elemen TOP yang lama, TOP berkurang 1 */
+
+void SavePrintStack(FILE *file, Stack UndoStack);
 #endif

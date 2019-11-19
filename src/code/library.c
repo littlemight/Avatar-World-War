@@ -140,8 +140,8 @@ void LoadInit()
         }
     }
     CreateEmptyState(&S);
+    SCreateEmpty(&UndoStack);
     MakeState(ArrBuilding, P, 1, &S);
-    SavePrintState(0, S);
     SCreateEmpty(&UndoStack);
 }
 /** ======================================== ----  ========================================  **/
@@ -333,5 +333,13 @@ void RegenTroop()
         }
     }
 }
-// }
 // /** ======================================== ----  ========================================  **/
+
+void SavePrintGame(FILE *file, Matrix Peta, Matrix AdjMat, State S, Stack UndoStack) {
+    SavePrintMatrix(file, Peta);
+    SavePrintMatrix(file, AdjMat);
+    SavePrintState(file, S);
+    SavePrintStack(file, UndoStack);
+    fprintf(file, "#");
+    fclose(file);
+}

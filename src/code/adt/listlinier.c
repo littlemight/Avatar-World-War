@@ -243,10 +243,10 @@ void SavePrintList (FILE *file, List L)
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
 {
-  /*f*/printf("%d\n", LNbElmt(L));
+  fprintf(file,  "%d\n", LNbElmt(L));
   addressList cur = LFirst(L);
   while (cur != NilList) {
-    /*f*/printf("%d\n", LInfo(cur));
+    fprintf(file,  "%d\n", LInfo(cur));
     cur = LNext(cur);
   }
 }

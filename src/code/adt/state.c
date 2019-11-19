@@ -39,5 +39,5 @@ void SavePrintState(FILE *file, State S) {
     for (int i = 1; i <= 2; i++) {
         SavePrintPlayer(file, P(S, i));
     }
-    /*f*/printf("%d\n", CurPlayerID(S));
+    fprintf(file,  "%d\n", CurPlayerID(S));
 }

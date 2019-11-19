@@ -22,17 +22,15 @@ void CopyMatrix (Matrix MIn, Matrix * MHsl){
 }
 
 void SavePrintMatrix(FILE *file, Matrix M) {
-  /*f*/printf("%d %d\n", REff(M), CEff(M));
+  fprintf(file,  "%d %d\n", REff(M), CEff(M));
   for (int i = 1; i <= REff(M); i++) {
     for (int j = 1; j <= CEff(M); j++) {
-      /*f*/printf("%d", MElmt(M, i, j));
+      fprintf(file,  "%d", MElmt(M, i, j));
       if (j < CEff(M)) {
-        /*f*/printf(" ");
+        fprintf(file,  " ");
       }
     }
-    if (i < REff(M)) {
-      /*f*/printf("\n");
-    }
+    fprintf(file,  "\n");
   }
 }
 

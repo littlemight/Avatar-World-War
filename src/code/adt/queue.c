@@ -65,7 +65,7 @@ void CopySkills(Queue Qin, Queue *Qout) {
 }
 
 void SavePrintQueue(FILE *file, Queue Q) {
-  /*f*/printf("%d\n", QNbElmt(Q));
+  fprintf(file,  "%d\n", QNbElmt(Q));
   for (int i = 1; i <= QNbElmt(Q); i++) {
     SavePrintKata(file, Q.T[i]);
   }

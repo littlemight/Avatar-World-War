@@ -30,6 +30,10 @@ void StartGame() {
             SPush(&UndoStack, S);
             State St = InfoTop(UndoStack);
             Attack(CurPlayerID(S));
+            /** BUAT NGETES SAVE NYA, TIAP MOVE DI PRINT KE SAVE.SDAT **/
+            FILE *file = fopen("save.sdat", "w");
+            SavePrintGame(file, Peta, AdjMat, S, UndoStack);
+            /****/
             getSkills(St, S);
             ADV();
         } else if (IsStrEQ(effCommand, "LEVEL_UP")) {
@@ -79,5 +83,8 @@ void AvatarWW() {
     QAdd(&Skills(P(S, 2)), InstantUpgrade);
 
     CurPlayerID(S) = 1;
+
+    FILE *file = fopen("save.sdat", "w");
+    SavePrintGame(file, Peta, AdjMat, S, UndoStack);
     StartGame();
 }

@@ -25,8 +25,8 @@ void SavePrintPlayer(FILE *file, Player P) {
     SavePrintKata(file, Username(P));
     SavePrintList(file, Buildings(P));
     SavePrintQueue(file, Skills(P));
-    /*f*/printf("%d\n", PShield(P));
-    /*f*/printf("%d\n", PTurn(P));
-    /*f*/printf("%d\n", PAttackUp(P));
-    /*f*/printf("%d\n", PCriticalHit(P));
+    fprintf(file,  "%d\n", PShield(P));
+    fprintf(file,  "%d\n", PTurn(P));
+    fprintf(file,  "%d\n", PAttackUp(P));
+    fprintf(file,  "%d\n", PCriticalHit(P));
 }

@@ -24,3 +24,10 @@ void SPop (Stack * S, Sinfotype* X){
   CopyState(InfoTop(*S), X);
   Top(*S)--;
 }
+
+void SavePrintStack(FILE *file, Stack UndoStack) {
+  fprintf(file,  "%d\n", Top(UndoStack));
+  for (int i = 1; i <= Top(UndoStack); i++) {
+    SavePrintState(file, UndoStack.T[i]);
+  }
+}

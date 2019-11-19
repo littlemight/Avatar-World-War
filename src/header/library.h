@@ -61,36 +61,4 @@ void RegenTroop();
 // }
 // /** ======================================== ----  ========================================  **/
 
-// /** ======================================== SKILL  ========================================  **/
-
-
-// // void GetSkill(Player * P1, Player * P2){ //ngecek apakah dapet skill di akhir tiap move
-// //     if(LNbElmt(P2->Buildings == 2)){
-
-// //     }
-// //     if(){
-
-// //     } 
-// // }
-
-// // void DoSkill(char* Cur, int curPlayerID) {
-// //     if (Cur == InstantUpgrade)
-// //     DoInstantUpgrade(curPlayerID);
-// //     else if (Cur == Shield)
-// //         DoShield(curPlayerID);
-// //     else if (Cur ==  ExtraTurn)
-// //         DoExtraTurn(curPlayerID);
-// //     else if (Cur ==  AttackUp)
-// //         DoAttackUp(curPlayerID);
-// //     else if (Cur ==  CriticalHit)
-// //         DoCriticalHit(curPlayerID);
-// //     else if (Cur ==  InstantReinforcement)
-// //         DoInstantReinforcement();
-// //     else if (Cur ==  CriticalHit)
-// //         DoCriticalHit();
-// //     else if (Cur == InstantReinforcement)
-// //         DoInstantReinforcement();
-// //     else if (Cur == Barrage)
-// //         DoBarrage();
-// // }
-// #endif
+void SavePrintGame(FILE *file, Matrix Peta, Matrix AdjMat, State S, Stack UndoStack);
