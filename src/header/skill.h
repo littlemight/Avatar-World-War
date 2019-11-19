@@ -11,4 +11,11 @@ void doCriticalHit(int PlayerID);
 void doInstantReinforcement(int PlayerID);
 void doBarrage(int PlayerID);
 
+void getShield(State SBef, State SNow);
+void getAttackUp(State SBef, State SNow);
+void getBarrage(State SBef, State SNow);
+void getInstantReinforcement(State SNow);
+void getExtraTurn(State SBef, State SNow);
+void getCriticalHit(State SBef, State SNow);
+
 #endif
