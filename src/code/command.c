@@ -35,8 +35,9 @@ void Attack(int PlayerID) {
         }
     } while (pick <= 0 || pick > NBuild);
     id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
-    HasAttacked(AElmt(ArrBuilding(S), id)) = true;
 
+    HasAttacked(AElmt(ArrBuilding(S), id)) = true;
+    
     printf("Daftar bangunan yang dapat diserang:\n");
     int NDegree = NeighbourDegree(G(S), id);
     PrintNeighbourBuilding(id);
@@ -46,7 +47,7 @@ void Attack(int PlayerID) {
     do {
         printf("Bangunan yang diserang: ");
         InputInt(&pickAttack);
-        if (pickAttack <= 0 || pick > NDegree) {
+        if (pickAttack <= 0 || pickAttack > NDegree) {
             printf("Pilihan tidak valid.\n");
         }
     } while (pickAttack <= 0 || pickAttack > NDegree);
@@ -66,10 +67,10 @@ void Attack(int PlayerID) {
 
     int enemyTroop = Troop(AElmt(ArrBuilding(S), idAttack));
     float multiplier = GetMultiplier(idAttack, ownerAttack);
-    atkTroop *= multiplier;
 
-    if (atkTroop*multiplier < enemyTroop) {
-        Troop(AElmt(ArrBuilding(S), idAttack)) -= atkTroop;
+    int tmAtk = atkTroop*multiplier;
+    if (tmAtk < enemyTroop) {
+        Troop(AElmt(ArrBuilding(S), idAttack)) -= tmAtk;
         printf("Bangunan gagal direbut.\n");
     } else {
         int minToConquer = 0;
@@ -82,10 +83,14 @@ void Attack(int PlayerID) {
         int survivingTroop = atkTroop - minToConquer;
         Troop(AElmt(ArrBuilding(S), idAttack)) = survivingTroop;
         ChangeBaseProperty(&AElmt(ArrBuilding(S), idAttack), GetBase(AElmt(ArrBuilding(S), idAttack), 1));
-        OwnerID(AElmt(ArrBuilding(S), idAttack)) = PlayerID;
 
-        // disini perlu indeks dari array building dr building nya
+        int EnemyID = PlayerID % 2 + 1;
+        if (OwnerID(AElmt(ArrBuilding(S), idAttack)) == EnemyID) {
+            DelP(&Buildings(P(S, EnemyID)), idAttack);
+        }
+        OwnerID(AElmt(ArrBuilding(S), idAttack)) = PlayerID;
         InsVLast(&Buildings(P(S, PlayerID)), idAttack);
+        
         printf("Bangunan menjadi milikmu!\n");
     }
 }

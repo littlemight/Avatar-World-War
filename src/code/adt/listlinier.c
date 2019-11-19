@@ -24,7 +24,7 @@ addressList Alokasi (Linfotype X)
   P = (addressList) malloc (sizeof(addressList));
   if (P != NilList) {
     LInfo(P) = X;
-    LNext( P) = NilList;
+    LNext(P) = NilList;
     return P;
   } else return NilList;
 }
@@ -88,6 +88,9 @@ void InsVLast (List *L, Linfotype X)
     } else {
       LFirst(*L) = P;
     }
+    // printf("success\n");
+  } else {
+    // printf("fail\n");
   }
 }
 
@@ -260,9 +263,10 @@ Linfotype Max (List L)
 
 int LGetNthInfo(List L, int n) {
   addressList cur = LFirst(L);
-  while (n != 1) {
+  int tm = 1;
+  while (tm != n) {
     cur = LNext(cur);
-    n--;
+    tm++;
   }
   return LInfo(cur);
 }

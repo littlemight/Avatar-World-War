@@ -1,5 +1,4 @@
 #include "../header/skill.h"
-#include "../header/library.h"
 
 void doInstantUpgrade(int PlayerID) {
     addressList cur = LFirst(Buildings(P(S, PlayerID)));

@@ -186,15 +186,13 @@ void PrintPeta()
 void PrintPlayerBuildings(int curPlayerID)
 {
     printf("Building List:\n");
-    int cnt = 1;
-    for (int i = 1; i <= ANeff(ArrBuilding(S)); i++)
-    {
-        if (OwnerID(AElmt(ArrBuilding(S), i)) == curPlayerID)
-        {
-            printf("%d. ", cnt++);
-            PrintBuilding(AElmt(ArrBuilding(S), i));
-            printf("\n");
-        }
+    addressList cur = LFirst(Buildings(P(S, curPlayerID)));
+    int sz = NbElmt(Buildings(P(S, curPlayerID)));
+    for (int i = 1; i <= sz; i++) {
+        printf("%d. ", i);
+        PrintBuilding(AElmt(ArrBuilding(S), LInfo(cur)));
+        printf("\n");
+        cur = LNext(cur);
     }
 }
 
@@ -252,13 +250,17 @@ int GGetNeighbourNthInfo(Graph G, infotypeGraph X, int n)
     adrNode Pn = SearchNode(G, X);
     adrSuccNode P = Trail(Pn);
     Building Cur = AElmt(ArrBuilding(S), X);
-    while (n != 1)
+    while (P != NilGraph)
     {
         Building B = AElmt(ArrBuilding(S), Id(Succ(P)));
-        if (OwnerID(B) != OwnerID(Cur))
-            n--;
+        if (OwnerID(B) != OwnerID(Cur)) {
+            if (n == 1) {
+                return Id(Succ(P));
+            } else n--;
+        }
         P = Next(P);
     }
+    // printf("%d\n", Id(Succ(P)));
     return Id(Succ(P));
 }
 
@@ -267,11 +269,14 @@ int GGetOurNthInfo(Graph G, infotypeGraph X, int n)
     adrNode Pn = SearchNode(G, X);
     adrSuccNode P = Trail(Pn);
     Building Cur = AElmt(ArrBuilding(S), X);
-    while (n != 1)
+    while (P != NilGraph)
     {
         Building B = AElmt(ArrBuilding(S), Id(Succ(P)));
-        if (OwnerID(B) == OwnerID(Cur))
-            n--;
+        if (OwnerID(B) == OwnerID(Cur)) {
+            if (n == 1) {
+                return Id(Succ(P));
+            } else n--;
+        }
         P = Next(P);
     }
     return Id(Succ(P));
