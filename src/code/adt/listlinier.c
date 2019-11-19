@@ -289,3 +289,12 @@ void DealokasiAll(List L) {
     cur = nex;
   }
 }
+
+addressList LLastElmt(List L){
+	if(LIsEmpty(L)) return NilList;
+	addressList P = LFirst(L);
+	while(LNext(P) != NilList){
+		P = LNext(P);
+	}
+	return P;
+}
