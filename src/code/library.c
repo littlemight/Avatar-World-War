@@ -10,7 +10,7 @@ Building VILLAGE[5];
 
 State S;
 Graph G;
-Matrix Peta;
+Matrix Peta, AdjMat; // AdjMat buat gampang simpan ke file
 Stack UndoStack;
 Kata InstantUpgrade, Shield, ExtraTurn, AttackUp, CriticalHit, InstantReinforcement, Barrage;
 
@@ -125,12 +125,14 @@ void LoadInit()
         MElmt(Peta, Row(pos), Col(pos)) = i;
     }
     CreateGraph(1, &G);
+    MakeMatrix(&AdjMat, B, B);
     for (int i = 1; i <= B; i++)
     {
         for (int j = 1; j <= B; j++)
         {
             int x;
             InputInt(&x);
+            MElmt(AdjMat, i, j) = x;
             if (x == 1)
             {
                 InsertEdge(&G, i, j);
@@ -139,6 +141,7 @@ void LoadInit()
     }
     CreateEmptyState(&S);
     MakeState(ArrBuilding, P, 1, &S);
+    SavePrintState(0, S);
     SCreateEmpty(&UndoStack);
 }
 /** ======================================== ----  ========================================  **/

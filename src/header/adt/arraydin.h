@@ -108,6 +108,8 @@ void TulisIsiTab(TabBuilding T);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika tabel kosong : menulis [] */
 
+void SavePrintTabBuilding(FILE *file, TabBuilding ArrBuilding);
+
 /* ********** OPERATOR ARITMATIKA ********** */
 /* *** Aritmatika tabel : Penjumlahan, pengurangan, perkalian, ... *** */
 TabBuilding PlusMinusTab(TabBuilding T1, TabBuilding T2, boolean plus);

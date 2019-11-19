@@ -75,7 +75,7 @@ void PrintBuilding(Building B) {
 }
 
 void SavePrintBuilding(FILE *file, Building B) {
-    /*f*/printf("%d %c %d %d %d %d %d %d %d %d",
+    /*f*/printf("%d %c %d %d %d %d %d %d %d %d\n",
         OwnerID(B),
         Type(B),
         Level(B),

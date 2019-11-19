@@ -245,12 +245,10 @@ void SavePrintList (FILE *file, List L)
 {
   /*f*/printf("%d\n", LNbElmt(L));
   addressList cur = LFirst(L);
-  printf("[");
   while (cur != NilList) {
     /*f*/printf("%d\n", LInfo(cur));
     cur = LNext(cur);
   }
-  printf("]");
 }
 
 int LNbElmt(List L)

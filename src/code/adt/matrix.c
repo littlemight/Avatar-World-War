@@ -21,6 +21,21 @@ void CopyMatrix (Matrix MIn, Matrix * MHsl){
   // printf("matrix success copy\n");
 }
 
+void SavePrintMatrix(FILE *file, Matrix M) {
+  /*f*/printf("%d %d\n", REff(M), CEff(M));
+  for (int i = 1; i <= REff(M); i++) {
+    for (int j = 1; j <= CEff(M); j++) {
+      /*f*/printf("%d", MElmt(M, i, j));
+      if (j < CEff(M)) {
+        /*f*/printf(" ");
+      }
+    }
+    if (i < REff(M)) {
+      /*f*/printf("\n");
+    }
+  }
+}
+
 boolean IsPointValid (Matrix M, Point P){
   return (Row(P) >= 1 && Row(P) <= REff(M) && Col(P) >= 1 && Col(P) <= CEff(M) );
 }

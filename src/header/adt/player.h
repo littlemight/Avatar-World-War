@@ -27,5 +27,6 @@ typedef struct {
 
 void PCreateEmpty(Player *P);
 void CopyPlayer(Player Pin, Player *Pout);
+void SavePrintPlayer(FILE *file, Player P);
 
 #endif

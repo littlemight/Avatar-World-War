@@ -27,13 +27,6 @@ void DeAlokasi(Queue *Q) {
   MaxEl(*Q) = 0;
 }
 
-void SavePrintQueue(FILE *file, Queue Q) {
-  /*f*/printf("%d\n", QNbElmt(Q));
-  for (int i = 1; i <= QNbElmt(Q); i++) {
-    SavePrintKata(file, Q.T[i]);
-  }
-}
-
 void QAdd(Queue* Q, infotype X) {
   if (QIsEmpty(*Q)) {
     Head(*Q) = 1;
@@ -69,4 +62,11 @@ void CopySkills(Queue Qin, Queue *Qout) {
     CopyKata((Qin).T[i], &(*Qout).T[i]);
   }
   // printf("skill queue success copy\n");
+}
+
+void SavePrintQueue(FILE *file, Queue Q) {
+  /*f*/printf("%d\n", QNbElmt(Q));
+  for (int i = 1; i <= QNbElmt(Q); i++) {
+    SavePrintKata(file, Q.T[i]);
+  }
 }

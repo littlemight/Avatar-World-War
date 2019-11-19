@@ -24,5 +24,6 @@ void CreateEmptyState(State *S);
 void MakeState(TabBuilding InpArr, Player P[3], int PlayerID, State *S);
 void PrintState(State S);
 void CopyState(State Sin, State *Sout);
+void SavePrintState(FILE *file, State S);
 
 #endif
