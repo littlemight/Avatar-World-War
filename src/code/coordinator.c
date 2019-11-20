@@ -83,8 +83,5 @@ void AvatarWW() {
     QAdd(&Skills(P(S, 2)), InstantUpgrade);
 
     CurPlayerID(S) = 1;
-
-    FILE *file = fopen("save.sdat", "w");
-    SavePrintGame(file, Peta, AdjMat, S, UndoStack);
     StartGame();
 }
