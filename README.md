@@ -5,7 +5,7 @@
 - Output color
   
 ### Load/Save
-- Write kondisi game ke file (baca notes di bawah)
+- Write kondisi game ke file (baca notes)
   
 ### Command
 - Attack
