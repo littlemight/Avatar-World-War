@@ -1,1 +1,0 @@
-cls && compile\%1 && run\%1
