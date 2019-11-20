@@ -68,7 +68,6 @@ void QDel (Queue * Q, infotype * X);
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
 void CopySkills(Queue Qin, Queue *Qout);
-// IMPLEMENTASI
 
 void SavePrintQueue(FILE *file, Queue Q);
 

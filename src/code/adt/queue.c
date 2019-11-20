@@ -20,6 +20,9 @@ void QCreateEmpty(Queue* Q, int Max) {
   Head(*Q) = Nil;
   Tail(*Q) = Nil;
   (*Q).T = (infotype*) malloc((Max + 1) * sizeof(infotype));
+  for (int i = 0; i <= MaxEl(*Q); i++) {
+    KCreateEmpty(&(*Q).T[i]);
+  }
 }
 
 void DeAlokasi(Queue *Q) {
@@ -36,9 +39,7 @@ void QAdd(Queue* Q, infotype X) {
   } else {
     Tail(*Q) = (Tail(*Q) % MaxEl(*Q)) + 1;
     CopyKata(X, &InfoTail(*Q));
-    // InfoTail(*Q) = X;
   }
-  // ADV();
 }
 
 void QDel(Queue* Q, infotype *X) {
@@ -51,17 +52,17 @@ void QDel(Queue* Q, infotype *X) {
 }
 
 void CopySkills(Queue Qin, Queue *Qout) {
+  QCreateEmpty(Qout, 10);
   Head(*Qout) = Head(Qin);
   Tail(*Qout) = Tail(Qin);
   MaxEl(*Qout) = MaxEl(Qin);
-  // printf("here copy skill\n");
+
+  // printf("SKILLS COPY\n");
+  // printf("tail: %d", Tail(*Qout));
   for (int i = Head(*Qout); i <= Tail(*Qout); i++) {
-    // printf("in skills %i\n");
-    // PrintKata((Qin).T[i]);
-    // printf("\n");
     CopyKata((Qin).T[i], &(*Qout).T[i]);
+    // printf("skills: %d\n", i);
   }
-  // printf("skill queue success copy\n");
 }
 
 void SavePrintQueue(FILE *file, Queue Q) {

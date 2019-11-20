@@ -3,7 +3,6 @@
 
 void PrintStatus() {
     clear();
-
     PrintPeta();
     printf("Player ");
     PrintKata(Username(P(S, CurPlayerID(S))));
@@ -30,10 +29,6 @@ void StartGame() {
             SPush(&UndoStack, S);
             State St = InfoTop(UndoStack);
             Attack(CurPlayerID(S));
-            /** BUAT NGETES SAVE NYA, TIAP MOVE DI PRINT KE SAVE.SDAT **/
-            FILE *file = fopen("save.sdat", "w");
-            SavePrintGame(file, Peta, AdjMat, S, UndoStack);
-            /****/
             getSkills(St, S);
             ADV();
         } else if (IsStrEQ(effCommand, "LEVEL_UP")) {
@@ -52,12 +47,14 @@ void StartGame() {
             Undo();
             ADV();
         } else if (IsStrEQ(effCommand, "SAVE")) {
+            Save();
             ADV();
         } else if (IsStrEQ(effCommand, "MOVE")) {
             SPush(&UndoStack, S);
             Move(CurPlayerID(S));
             ADV();
         } else if (IsStrEQ(effCommand, "EXIT")) {
+            printf("Press enter to confirm your exit ");
             ADV();
         } else if (IsStrEQ(effCommand, "END_TURN")) {
             EndTurn(CurPlayerID(S));
@@ -78,7 +75,6 @@ void AvatarWW() {
     printf("Masukkan Username Player 2: "); InputKata(&username2);
     Username(P(S, 1)) = username1;
     Username(P(S, 2)) = username2;
-
     QAdd(&Skills(P(S, 1)), InstantUpgrade);
     QAdd(&Skills(P(S, 2)), InstantUpgrade);
 

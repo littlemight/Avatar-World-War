@@ -9,6 +9,7 @@ void CreateEmptyState(State *S) {
 }
 
 void MakeState(TabBuilding InpArr, Player P[], int PlayerID, State *S) {
+    CreateEmptyState(S);
     CopyTab(InpArr, &ArrBuilding(*S));
     for (int i = 0; i < 3; i++) {
         CopyPlayer(P[i], &(P(*S, i)));
@@ -19,12 +20,11 @@ void MakeState(TabBuilding InpArr, Player P[], int PlayerID, State *S) {
 void PrintState(State S) {
     for (int i = 1; i <= ANbElmt(ArrBuilding(S)); i++) {
         PrintBuilding(AElmt(ArrBuilding(S), i));
-        printf("\n");
     }
 }
 
 void CopyState(State Sin, State *Sout) {
-    AMakeEmpty(&ArrBuilding(*Sout), ANbElmt(ArrBuilding(Sin)));
+    CreateEmptyState(Sout);
     CopyTab(ArrBuilding(Sin), &ArrBuilding(*Sout));
     for (int i = 1; i < 3; i++) {
         PCreateEmpty(&P(*Sout, i));
@@ -35,7 +35,7 @@ void CopyState(State Sin, State *Sout) {
 }
 
 void SavePrintState(FILE *file, State S) {
-    SavePrintTabBuilding(file, ArrBuilding(S));
+    // SavePrintTabBuilding(file, ArrBuilding(S));
     for (int i = 1; i <= 2; i++) {
         SavePrintPlayer(file, P(S, i));
     }

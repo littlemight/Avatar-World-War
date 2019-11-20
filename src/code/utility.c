@@ -17,11 +17,5 @@ void PrintCWD() {
 
 void clear()
 {
-  // #ifdef WINDOWS
-  //     system("cls");
-  // #else
-  //     // Assume POSIX
-  //     system ("clear");
-  // #endif
   system("clear || cls");
 }

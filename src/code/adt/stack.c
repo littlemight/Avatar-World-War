@@ -14,7 +14,6 @@ boolean SIsFull (Stack S){
 
 void SPush (Stack * S, Sinfotype X){
   CopyState(X, &InfoTop(*S));
-  // printf("here stack push\n");
   Top(*S)++;
   CopyState(X, &InfoTop(*S));
 }

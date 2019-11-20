@@ -1,4 +1,5 @@
 #include "../../header/adt/player.h"
+#include <stdio.h>
 
 void PCreateEmpty(Player *P) {
     KCreateEmpty(&Username(*P));
@@ -8,17 +9,16 @@ void PCreateEmpty(Player *P) {
     PAttackUp(*P) = PCriticalHit(*P) = false;
 }
 
-void CopyPlayer(Player Pin, Player *Pout) {
+void CopyPlayer(Player Pin, Player *Pout) { // aku bikin prosedur copy tuh dgn asumsi parameternya dah createempty duluan
+    // di load init perasaan udh createempty semua
+    PCreateEmpty(Pout); // ? gaperlu ya?
     CopyKata(Username(Pin), &Username(*Pout));
-    // PlayerID(*Pout) = PlayerID(Pin);
     CopySkills(Skills(Pin), &Skills(*Pout));
     CopyList(Buildings(Pin), &Buildings(*Pout));
     PShield(*Pout) = PShield(Pin);
     PTurn(*Pout) = PTurn(Pin);
     PAttackUp(*Pout) = PAttackUp(Pin);
     PCriticalHit(*Pout) = PCriticalHit(Pin);
-    // printf("player success copy\n");
-    return;
 }
 
 void SavePrintPlayer(FILE *file, Player P) {

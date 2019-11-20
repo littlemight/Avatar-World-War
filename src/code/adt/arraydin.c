@@ -112,5 +112,4 @@ void CopyTab(TabBuilding Tin, TabBuilding  *Tout) {
   for (IdxType i = GetFirstIdx(Tin); i <= GetLastIdx(Tin); i++) {
     CopyBuilding(AElmt(Tin, i), &AElmt(*Tout, i));
   }
-  // printf("array success copy\n");
 }

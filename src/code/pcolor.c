@@ -26,6 +26,6 @@ void print_magenta(char c) {
 }
 
 void print_cyan(char c) {
-    printf("%s%c", MAGENTA, c);
+    printf("%s%c", CYAN, c);
     printf("%s", NORMAL);
 }

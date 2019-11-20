@@ -139,8 +139,6 @@ void LoadInit()
             }
         }
     }
-    CreateEmptyState(&S);
-    SCreateEmpty(&UndoStack);
     MakeState(ArrBuilding, P, 1, &S);
     SCreateEmpty(&UndoStack);
 }
@@ -149,15 +147,52 @@ void LoadInit()
 /** ======================================== PRINT  ========================================  **/
 void PrintPeta()
 {
-    for (int i = 0; i <= REff(Peta) + 1; i++)
+    // Left indent
+    printf("    ");
+    // Col Number
+    for (int j = 1; j <= CEff(Peta); j++) {
+        if (j < 10) {
+            printf(" ");
+        }
+        printf(" ");
+        printf("%s", GREEN);
+        printf("%d", j);
+        printf("%s", NORMAL);
+        printf(" ");
+    } printf("\n");
+
+    // Left indent
+    printf("    ");
+
+    // Border
+    printf("%s", YELLOW);
+    for (int j = 1; j <= 4*CEff(Peta) + 1; j++) {
+        printf("*");
+    } printf("\n");
+    printf("%s", NORMAL);
+
+    for (int i = 1; i <= REff(Peta); i++)
     {
-        for (int j = 0; j <= CEff(Peta) + 1; j++)
-        {
-            if (i == 0 || j == 0 || i == REff(Peta) + 1 || j == CEff(Peta) + 1)
-            {
+        // Row Number
+        if (i < 10) {
+            printf(" ");
+        }
+        printf(" ");
+        printf("%s", GREEN);
+        printf("%d", i);
+        printf("%s", NORMAL);
+        printf(" ");
+
+        // Print contents
+        for (int j = 1; j <= CEff(Peta); j++)
+        {   
+            if (j == 1) {
+                printf("%s", YELLOW);
                 printf("*");
-                continue;
-            }
+                printf("%s", NORMAL);
+            } else printf("|");
+            printf(" ");
+
             if (MElmt(Peta, i, j) == 0)
             {
                 printf(" ");
@@ -177,7 +212,26 @@ void PrintPeta()
                     break;
                 }
             }
+
+            printf(" ");
         }
+        printf("%s", YELLOW);
+        printf("*");
+        printf("%s", NORMAL);
+        printf("\n");
+
+        // left indent
+        printf("    ");
+        printf("%s", YELLOW);
+        printf("*");
+        printf("%s", NORMAL);
+        if (i == REff(Peta)) printf("%s", YELLOW);
+        for (int j = 2; j <= 4*CEff(Peta); j++) {
+            printf("*");
+        }
+        printf("%s", YELLOW);
+        printf("*");
+        printf("%s", NORMAL);
         printf("\n");
     }
 }
@@ -336,10 +390,10 @@ void RegenTroop()
 // /** ======================================== ----  ========================================  **/
 
 void SavePrintGame(FILE *file, Matrix Peta, Matrix AdjMat, State S, Stack UndoStack) {
-    SavePrintMatrix(file, Peta);
-    SavePrintMatrix(file, AdjMat);
+    // SavePrintMatrix(file, Peta);
+    // SavePrintMatrix(file, AdjMat);
     SavePrintState(file, S);
-    SavePrintStack(file, UndoStack);
+    // SavePrintStack(file, UndoStack);
     fprintf(file, "#");
     fclose(file);
 }

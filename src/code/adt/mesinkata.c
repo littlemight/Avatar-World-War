@@ -187,14 +187,12 @@ Kata StrToKata(char* Str) {
 }
 
 void CopyKata(Kata Kin, Kata *Kout) {
-  // printf("disini\n");
+  KCreateEmpty(Kout);
   (*Kout).Length = Kin.Length;
-  // printf("%d\n", (Kout->Length));
   for (int i = 1; i <= Kin.Length; i++) {
     (*Kout).TabKata[i] = (Kin).TabKata[i];
   }
   (*Kout).TabKata[Kin.Length + 1] = 0;
-  // printf("kata success copy\n");
   return;
 }
 

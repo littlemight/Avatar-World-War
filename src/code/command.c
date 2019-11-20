@@ -206,6 +206,15 @@ void Undo() {
     }
 }
 
+void Save(){
+    /** BUAT NGETES SAVE NYA, TIAP MOVE DI PRINT KE SAVE.SDAT **/
+    FILE *file = fopen("data/saved.dat", "w");
+    SavePrintGame(file, Peta, AdjMat, S, UndoStack);
+    /****/
+    printf("Game saved");
+}
+
+
 void EndTurn(int PlayerID){
     // end turn kurang shield, dan update status player lain
     int enemyPlayerID = PlayerID % 2 + 1;
