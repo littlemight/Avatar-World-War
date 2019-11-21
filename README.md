@@ -1,6 +1,6 @@
 # HELP
-## BIKIN DRIVER DONG TOLONG PLIS HELP
-Bikin driver untuk tiap adt yang ada di folder "src/adt", tolong bikinin ya
+## BANTU BIKIN DRIVER YAA
+Bikin driver untuk tiap adt yang ada di folder "src/adt", tolong bantu bikinin ya
 1. Bikin driver nya di dalam folder adt/<nama adt>, terus namanya <b>HARUS</b> driver.c
 Contoh  
 ```
