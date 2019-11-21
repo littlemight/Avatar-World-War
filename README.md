@@ -12,6 +12,17 @@ Contoh
 --------point.h
 --------driver.c
 ```
+Terus tambahin STARTKATA(0); di dalam blok program main kalian
+```
+#include "<nama adt>.h"
+int main() {
+  STARTKATA(0);
+  
+  // program driver
+  return 0; 
+}
+```
+
 Biar gampang kalian nge run nya, jalaninnya kaya gini
 ```
 > rundriver <nama adt>
