@@ -1,0 +1,27 @@
+{
+  "files.associations": {
+    "deque": "c",
+    "string": "c",
+    "vector": "c",
+    "stdio.h": "c",
+    "boolean.h": "c",
+    "graph.h": "c",
+    "point.h": "c",
+    "building.h": "c",
+    "mesinkata.h": "c",
+    "cstdlib": "cpp",
+    "command.h": "c",
+    "tools.h": "c",
+    "player.h": "c",
+    "arraydin.h": "c",
+    "coordinator.h": "c",
+    "listlinier.h": "c",
+    "library.h": "c",
+    "skill.h": "c",
+    "matrix.h": "c",
+    "limits.h": "c",
+    "stack.h": "c",
+    "pcolor.h": "c",
+    "state.h": "c"
+  }
+}
