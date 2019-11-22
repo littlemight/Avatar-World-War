@@ -16,7 +16,7 @@ void getAttackUp(State SBef, State SNow);
 void getBarrage(State SBef, State SNow);
 void getInstantReinforcement(State SNow);
 void getExtraTurn(State SBef, State SNow);
-void getCriticalHit(State SBef, State SNow);
+void getCriticalHit(int PlayerID);
 
 void getSkills(State SBef, State SNow);
 

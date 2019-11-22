@@ -16,7 +16,6 @@ void ADealokasi(TabBuilding *T)
 }
 
 int ANbElmt(TabBuilding T)
-/* *** Daya tampung container *** */
 {
   return ANeff(T);
 }

@@ -23,7 +23,31 @@ void SavePrintMatrix(FILE *file, Matrix M) {
   }
 }
 
+void BacaMatrix(Matrix *M) {
+  int R, C;
+  printf("Masukkan dimensi matriks (R lalu C): ");
+  InputInt(&R); InputInt(&C);
+  MakeMatrix(M, R, C);
+  for (int i = 1; i <= R; i++) {
+    for (int j = 1; j <= C; j++) {
+      InputInt(&MElmt(*M, i, j));
+    }
+  }
+}
 
+void TulisMatrix(Matrix M){
+  for ( int i = 1; i <= REff(M); i ++ ){ 
+    for ( int j = 1; j <= CEff(M); j ++ ){
+      if (MElmt(M, i, j) != 0){
+        printf("%d", MElmt(M, i, j));
+      }
+      else {
+        printf(" ");
+      }
+    }
+    printf("\n");
+  }
+}
 // dibawah ini ga dipake
 boolean IsPointValid (Matrix M, Point P){
   return (Row(P) >= 1 && Row(P) <= REff(M) && Col(P) >= 1 && Col(P) <= CEff(M) );
@@ -41,20 +65,6 @@ void CopyMatrix (Matrix MIn, Matrix * MHsl){
 
 MEltype NilaiMatrixDariPoint (Matrix * M, Point P){
   return (MElmt(*M, Row(P), Col(P)) );
-}
-
-void TulisMatrix(Matrix M){
-  for ( int i = 1; i <= REff(M); i ++ ){ 
-    for ( int j = 1; j <= CEff(M); j ++ ){
-      if (MElmt(M, i, j) != 0){
-        printf("%d", MElmt(M, i, j));
-      }
-      else {
-        printf(" ");
-      }
-    }
-    printf("\n");
-  }
 }
 
 int NBBuildingMatrix (Matrix M){

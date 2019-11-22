@@ -18,7 +18,7 @@ extern Building FORT[5];
 extern Building VILLAGE[5];
 
 extern State S;
-extern Stack UndoStack;
+extern Stack UndoStack, RedoStack;
 extern Matrix Peta, AdjMat;
 extern Graph G;
 extern Kata InstantUpgrade;

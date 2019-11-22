@@ -6,7 +6,6 @@ void CreateGraph(infotypeGraph X, Graph* G)
     InsertNode(G, X, &dummy);
 }
 
-/* ----- MANAJEMEN MEMORI ----- */
 adrNode AlokNodeGraph(infotypeGraph X)
 {
     adrNode P = (adrNode) malloc (sizeof(NodeGraph));

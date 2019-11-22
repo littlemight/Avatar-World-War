@@ -23,8 +23,10 @@ void doShield(int PlayerID) {
     return;
 }
 
+// TAMBAH GET CRITICAL HIT DI SINI
 void doExtraTurn(int PlayerID) {
     PTurn(P(S, PlayerID))++;
+    getCriticalHit((PlayerID % 2) +1);
     printf("You have 1 more extra turn.\n");
     return;
 }
@@ -162,8 +164,10 @@ void getExtraTurn(State SBef, State SNow){
     return;
 }
 
-void getCriticalHit(State SBef, State SNow){
-    if(PTurn(P(SBef, 1))<PTurn(P(SNow, 1)) && CurPlayerID(SBef) == CurPlayerID(SNow)){
+void getCriticalHit(int PlayerID){
+    QAdd(&(Skills(P(S, PlayerID))), CriticalHit);
+}
+    /*if(PTurn(P(SBef, 1))<PTurn(P(SNow, 1)) && CurPlayerID(SBef) == CurPlayerID(SNow)){
         // //push skill ke p2
         QAdd(&(Skills(P(S, 2))), CriticalHit);
         printf("Selamat "); PrintKata(Username(P(S, 2))); printf(" mendapat skill Critical Hit!!\n");
@@ -172,16 +176,13 @@ void getCriticalHit(State SBef, State SNow){
         // //push skill ke p1
         QAdd(&(Skills(P(S, 1))), CriticalHit);
        printf("Selamat "); PrintKata(Username(P(S, 1))); printf(" mendapat skill Critical Hit!!\n");
-    }
-}
+    }*/
 
 void getSkills(State SBef, State SNow){
     getShield(SBef, SNow);
     getAttackUp(SBef, SNow);
     getBarrage(SBef, SNow);
-    //getInstantReinforcement(SNow);
     getExtraTurn(SBef, SNow);
-    getCriticalHit(SBef, SNow);
 }
 /* Ambigu :
   > Instart Reinf. itu setiap turn ada player yg lv 4 semua buildnya? -> maybe checking ny acuma diakhir turn aja (?) bukan per aksi

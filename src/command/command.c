@@ -223,8 +223,19 @@ void Undo() {
     if (SIsEmpty(UndoStack)) {
         printf("You can't undo now.\n");
     } else {
+        SPush(&RedoStack, S);
         SPop(&UndoStack, &S);
         printf("Undo succeeded.\n");
+    }
+}
+
+void Redo() {
+    if (SIsEmpty(RedoStack)) {
+        printf("You can't redo now.\n");
+    } else {
+        SPush(&UndoStack, S);
+        SPop(&RedoStack, &S);
+        printf("Redo succeeded.\n");
     }
 }
 
@@ -256,11 +267,11 @@ int GetLoadedFilename(char* filename) {
         printf("Choose file number to load: ");
         int pick;
         InputInt(&pick);
-        printf("wtf\n");
         if (pick <= 0 || pick > sz) {
             printf("Invalid file number\n.");
             return 1;
         } else {
+            printf("wtf\n");
             Kata dir; CopyKata(StrToKata("data/save/"), &dir);
             Kata ext; CopyKata(StrToKata(".dat"), &ext);
             Kata completeDir;

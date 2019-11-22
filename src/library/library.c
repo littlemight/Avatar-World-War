@@ -8,10 +8,9 @@ Building VILLAGE[5];
 State S;
 Graph G;
 Matrix Peta, AdjMat; // AdjMat buat gampang simpan ke file
-Stack UndoStack;
+Stack UndoStack, RedoStack;
 Kata InstantUpgrade, Shield, ExtraTurn, AttackUp, CriticalHit, InstantReinforcement, Barrage;
 
-// /** ======================================== SETUPS  ========================================  **/
 void MakeAllBase()
 {
     MakeBaseProperty(&CASTLE[1], 'C', 1, 10, 40, false, 40);
@@ -133,6 +132,7 @@ void LoadInit()
     }
     MakeState(ArrBuilding, P, 1, &S);
     SCreateEmpty(&UndoStack);
+    SCreateEmpty(&RedoStack);
 }
 
 void LoadSaved(){
@@ -238,12 +238,10 @@ void LoadSaved(){
     int curplayer;
     InputInt(&curplayer);
     SCreateEmpty(&UndoStack);
+    SCreateEmpty(&RedoStack);
     MakeState(ArrBuilding, P, curplayer, &S);
 }
 
-/** ======================================== ----  ========================================  **/
-
-/** ======================================== PRINT  ========================================  **/
 void PrintPeta()
 {
     // Left indent
@@ -266,9 +264,12 @@ void PrintPeta()
 
     // Border
     printf("%s", YELLOW);
-    for (int j = 1; j <= 4*CEff(Peta) + 1; j++) {
-        printf("*");
-    } printf("\n");
+    printf("%c", 201);
+    for (int j = 2; j <= 4*CEff(Peta); j++) {
+        printf("%c", 205);
+    }
+    printf("%c", 187);
+    printf("\n");
     printf("%s", NORMAL);
 
     for (int i = 1; i <= REff(Peta); i++)
@@ -288,9 +289,9 @@ void PrintPeta()
         {   
             if (j == 1) {
                 printf("%s", YELLOW);
-                printf("*");
+                printf("%c", 186);
                 printf("%s", NORMAL);
-            } else printf("|");
+            } else printf("%c", 179);
 
             if (MElmt(Peta, i, j) == 0)
             {
@@ -322,29 +323,32 @@ void PrintPeta()
             }
         }
         printf("%s", YELLOW);
-        printf("*");
+        printf("%c", 186);
         printf("%s", NORMAL);
         printf("\n");
 
         // left indent
         printf("    ");
-        printf("%s", YELLOW);
-        printf("*");
-        printf("%s", NORMAL);
         if (i == REff(Peta)) {
             printf("%s", YELLOW);
+            printf("%c", 200);
             for (int j = 2; j <= 4*CEff(Peta); j++) {
-                printf("*");
+                printf("%c", 205);
             }
+            printf("%c", 188);
+            printf("%s", NORMAL);
         }
         else {
+            printf("%s", YELLOW);
+            printf("%c", 186);
+            printf("%s", NORMAL);
             for (int j = 2; j <= 4*CEff(Peta); j++) {
-                printf("-");
+                printf("%c", 196);
             }
+            printf("%s", YELLOW);
+            printf("%c", 186);
+            printf("%s", NORMAL);
         }
-        printf("%s", YELLOW);
-        printf("*");
-        printf("%s", NORMAL);
         printf("\n");
     }
 }
@@ -398,7 +402,7 @@ void PrintPlayerBuildings(int curPlayerID)
 }
 
 void PrintNeighbourBuilding(int BuildID)
-{ // mencetak building yang tetangga dan beda ownership
+{
     adrNode Pn = SearchNode(G, BuildID);
     adrSuccNode P = Trail(Pn);
     int cnt = 1;
@@ -421,7 +425,7 @@ void PrintNeighbourBuilding(int BuildID)
 }
 
 void PrintOurBuilding(int BuildID)
-{ // mencetak building yang tetangga dan sama ownership
+{
     adrNode Pn = SearchNode(G, BuildID);
     adrSuccNode P = Trail(Pn);
     int cnt = 1;
@@ -442,9 +446,7 @@ void PrintOurBuilding(int BuildID)
         printf("Tidak ada.\n");
     }
 }
-/** ======================================== ----  ========================================  **/
 
-/** ======================================== NEIGHBOURHOOD TOOLS  ========================================  **/
 int GGetNeighbourNthInfo(Graph G, infotypeGraph X, int n)
 {
     adrNode Pn = SearchNode(G, X);
@@ -516,9 +518,7 @@ int OurDegree(Graph G, infotypeGraph X)
     }
     return cnt;
 }
-/** ======================================== ----  ========================================  **/
 
-/** ======================================== MEKANISME  ========================================  **/
 void RegenTroop()
 {
     for (int i = 1; i <= ANeff(ArrBuilding(S)); i++)
@@ -533,7 +533,6 @@ void RegenTroop()
         }
     }
 }
-// /** ======================================== ----  ========================================  **/
 
 void SavePrintGame(FILE *file, Matrix Peta, Matrix AdjMat, State S, Stack UndoStack) {
     // SavePrintMatrix(file, Peta);
