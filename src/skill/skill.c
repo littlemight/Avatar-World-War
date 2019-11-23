@@ -84,15 +84,34 @@ void getShield(State SBef, State SNow){
 }
 
 void getAttackUp(State SBef, State SNow){
-    if(LNbElmt(Buildings(P(SBef, 1)))==4 && LNbElmt(Buildings(P(SNow, 1)))==3){
-        //push ke queue skill p2
-        QAdd(&(Skills(P(S, 2))), AttackUp);
-        printf("Selamat "); PrintKata(Username(P(SNow, 2))); printf(" mendapat skill Attack Up!!\n");
+    int cnt1 = 0,  cnt2 = 0;
+    addressList aL = LFirst(Buildings(P(SNow, 1)));
+    while(aL != NilList){
+        if(Type(AElmt(ArrBuilding(SNow), LInfo(aL)))=='T') cnt1++;
+        aL = LNext(aL);
     }
-    if(LNbElmt(Buildings(P(SBef, 2)))==4 && LNbElmt(Buildings(P(SNow, 2)))==3){
-        //push ke queue skill p1
+    aL = LFirst(Buildings(P(SBef, 1)));
+    while(aL != NilList){
+        if(Type(AElmt(ArrBuilding(SBef), LInfo(aL)))=='T') cnt2++;
+        aL = LNext(aL);
+    }
+    if(cnt1 == 3 && cnt2 ==2){
         QAdd(&(Skills(P(S, 1))), AttackUp);
         printf("Selamat "); PrintKata(Username(P(SNow, 1))); printf(" mendapat skill Attack Up!!\n");
+    }
+    aL = LFirst(Buildings(P(SNow, 2)));
+    while(aL != NilList){
+        if(Type(AElmt(ArrBuilding(SNow), LInfo(aL)))=='T') cnt1++;
+        aL = LNext(aL);
+    }
+    aL = LFirst(Buildings(P(SBef, 2)));
+    while(aL != NilList){
+        if(Type(AElmt(ArrBuilding(SBef), LInfo(aL)))=='T') cnt2++;
+        aL = LNext(aL);
+    }
+    if(cnt1 == 3 && cnt2 ==2){
+        QAdd(&(Skills(P(S, 2))), AttackUp);
+        printf("Selamat "); PrintKata(Username(P(SNow, 2))); printf(" mendapat skill Attack Up!!\n");
     }
     return;
 }
