@@ -242,6 +242,27 @@ void LoadSaved(){
     MakeState(ArrBuilding, P, curplayer, &S);
 }
 
+int FindConnected(int id) {
+    adrNode Pn = SearchNode(G, id);
+    boolean c1 = false, c2 = false;
+    adrSuccNode P = Trail(Pn);
+    while (P != NilGraph) {
+        int ownerCur = OwnerID(AElmt(ArrBuilding(S), Id(Succ(P))));
+        if (ownerCur == 1) {
+            c1 = true;
+        } else if (ownerCur == 2) {
+            c2 = true;
+        }
+        P = Next(P);
+    }
+    int ret;
+    if (c1 && c2) ret = 3;
+    else if (c1) ret = 1;
+    else if (c2) ret = 2;
+    else ret = 0;
+    return ret;
+}
+
 void PrintPeta()
 {
     // Left indent
@@ -253,9 +274,9 @@ void PrintPeta()
             printf(" ");
         }
         printf(" ");
-        printf("%s", GREEN);
+        yellow();
         printf("%d", j);
-        printf("%s", NORMAL);
+        normal();
         printf(" ");
     } printf("\n");
 
@@ -263,14 +284,15 @@ void PrintPeta()
     printf("    ");
 
     // Border
-    printf("%s", YELLOW);
+    green();
     printf("%c", 201);
     for (int j = 2; j <= 4*CEff(Peta); j++) {
-        printf("%c", 205);
+        if (j % 4 == 1) printf("%c", 209);
+        else printf("%c", 205);
     }
     printf("%c", 187);
     printf("\n");
-    printf("%s", NORMAL);
+    normal();
 
     for (int i = 1; i <= REff(Peta); i++)
     {
@@ -279,19 +301,19 @@ void PrintPeta()
             printf(" ");
         }
         printf(" ");
-        printf("%s", GREEN);
+        yellow();
         printf("%d", i);
-        printf("%s", NORMAL);
+        normal();
         printf(" ");
 
         // Print contents
         for (int j = 1; j <= CEff(Peta); j++)
         {   
+            green();
             if (j == 1) {
-                printf("%s", YELLOW);
                 printf("%c", 186);
-                printf("%s", NORMAL);
             } else printf("%c", 179);
+            normal();
 
             if (MElmt(Peta, i, j) == 0)
             {
@@ -300,54 +322,76 @@ void PrintPeta()
             else
             {   
                 int idx = 0;
-                switch (AElmt(ArrBuilding(S), MElmt(Peta, i, j)).OwnerID)
+                int curOwn = OwnerID(AElmt(ArrBuilding(S), MElmt(Peta, i, j)));
+                int connectedTo;
+                switch (curOwn)
                 {
                 case 0:
+                    connectedTo = FindConnected(MElmt(Peta, i, j));
+                    switch (connectedTo) {
+                        case 0:
+                            break;
+                        case 1:
+                            blue();
+                            break;
+                        case 2:
+                            red();
+                            break;
+                        case 3:
+                            magenta();
+                            break;
+                    }
                     printf(" ");
                     printf("%c", AElmt(ArrBuilding(S), MElmt(Peta, i, j)).Type);
                     printf(" ");
+                    normal();
                     break;
                 case 1:
                     idx = SearchIdx(Buildings(P(S, 1)), MElmt(Peta, i, j));
-                    printf("%s", BLUE); printf("%d", idx); printf("%s", NORMAL);
+                    blue_bg(); printf("%d", idx);
                     if (idx < 10) printf(" ");
-                    print_blue(AElmt(ArrBuilding(S), MElmt(Peta, i, j)).Type);
+                    printf("%c", AElmt(ArrBuilding(S), MElmt(Peta, i, j)).Type);
+                    normal();
                     break;
                 case 2:
                     idx = SearchIdx(Buildings(P(S, 2)), MElmt(Peta, i, j));
-                    printf("%s", RED); printf("%d", idx); printf("%s", NORMAL);
+                    red_bg(); printf("%d", idx);
                     if (idx < 10) printf(" ");
-                    print_red(AElmt(ArrBuilding(S), MElmt(Peta, i, j)).Type);
+                    printf("%c", AElmt(ArrBuilding(S), MElmt(Peta, i, j)).Type);
+                    normal();
                     break;
                 }
             }
         }
-        printf("%s", YELLOW);
+        green();
         printf("%c", 186);
-        printf("%s", NORMAL);
+        normal();
         printf("\n");
 
         // left indent
         printf("    ");
         if (i == REff(Peta)) {
-            printf("%s", YELLOW);
+            green();
             printf("%c", 200);
             for (int j = 2; j <= 4*CEff(Peta); j++) {
-                printf("%c", 205);
+                if (j % 4 == 1) printf("%c", 207);
+                else printf("%c", 205);
             }
             printf("%c", 188);
-            printf("%s", NORMAL);
+            normal();
         }
         else {
-            printf("%s", YELLOW);
-            printf("%c", 186);
-            printf("%s", NORMAL);
+            green();
+            printf("%c", 199);
+            // normal();
             for (int j = 2; j <= 4*CEff(Peta); j++) {
-                printf("%c", 196);
+                if (j % 4 == 1) {
+                    printf("%c", 197);
+                } else printf("%c", 196);
             }
-            printf("%s", YELLOW);
-            printf("%c", 186);
-            printf("%s", NORMAL);
+            // magenta();
+            printf("%c", 182);
+            normal();
         }
         printf("\n");
     }
@@ -364,26 +408,26 @@ void PrintBuildingExtra(Building B) {
         printf("|");
         if (!HasAttacked(B)) {
             if (OwnerID(B) == 1) {
-                printf("%s", BLUE);
+                blue();
             } else if (OwnerID(B) == 2) {
-                printf("%s", RED);
+                red();
             }
         }
         printf(" A ");
         if (!HasAttacked(B)) {
-            printf("%s", NORMAL);
+            normal();
         }
         printf("|");
         if (!HasMoved(B)) {
             if (OwnerID(B) == 1) {
-                printf("%s", BLUE);
+                blue();
             } else if (OwnerID(B) == 2) {
-                printf("%s", RED);
+                red();
             }
         }
         printf(" M");
         if (!HasMoved(B)) {
-            printf("%s", NORMAL);
+            normal();
         }
     }
 }

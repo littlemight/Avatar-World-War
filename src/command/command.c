@@ -388,4 +388,5 @@ void EndTurn(int PlayerID){
     CurPlayerID(S) = CurPlayerID;
     RegenTroop();
     SCreateEmpty(&UndoStack);
+    SCreateEmpty(&RedoStack);
 }
