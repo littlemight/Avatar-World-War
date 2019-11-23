@@ -22,31 +22,38 @@ int Attack(int PlayerID) {
     int pick = 0;
     int id = 0;
     int NBuild = LNbElmt(Buildings(P(S, PlayerID)));
-    printf("Bangunan yang digunakan untuk menyerang: ");
+    printf("ATTACKER: ");
     InputInt(&pick);
     if (pick <= 0 || pick > NBuild) {
-        printf("Pilihan tidak valid.\n");
+        printf("Invalid input.\n");
         return 1;
     } else {
         id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
         if (HasAttacked(AElmt(ArrBuilding(S), id))) {
-            printf("Bangunan tersebut sudah menyerang dalam giliran ini!\n");
+            printf("That building has already attacked this turn.\n");
             return 1;
         }
     }
     id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
     
-    printf("Daftar bangunan yang dapat diserang:\n");
+
+    clear();
+    PrintPetaAttackable(id);
     int NDegree = NeighbourDegree(G, id);
+    printf("ATTACKABLE:\n");
+    if (NDegree == 0) {
+        reverse(); printf("NONE"); normal();
+        printf("\n");
+        return 1;
+    }
     PrintNeighbourBuilding(id);
-    if (NDegree == 0) return 1; 
     int pickAttack = 0;
     int idAttack = 0;
 
-    printf("Bangunan yang diserang: ");
+    printf("BUILDING TO ATTACK: ");
     InputInt(&pickAttack);
     if (pickAttack <= 0 || pickAttack > NDegree) {
-        printf("Pilihan tidak valid.\n");
+        printf("Invalid input.\n");
         return 1;
     }
     
@@ -55,10 +62,10 @@ int Attack(int PlayerID) {
     int ownerAttack = OwnerID(AElmt(ArrBuilding(S), idAttack));
     int atkTroop;
     
-    printf("Jumlah Pasukan (%d): ", Troop(AElmt(ArrBuilding(S), id)));
+    printf("TROOPS ADVANCED [Max %d]: ", Troop(AElmt(ArrBuilding(S), id)));
     InputInt(&atkTroop);
     if (atkTroop <= 0 || atkTroop > Troop(AElmt(ArrBuilding(S), id))) {
-        printf("Jumlah pasukan tidak valid!\n");
+        printf("Invalid input.\n");
         return 1;
     }
     
@@ -71,7 +78,7 @@ int Attack(int PlayerID) {
     int tmAtk = atkTroop*multiplier;
     if (tmAtk < enemyTroop) {
         Troop(AElmt(ArrBuilding(S), idAttack)) -= tmAtk;
-        printf("Bangunan gagal direbut.\n");
+        printf("Failed to conquer.\n");
         return 0;
     } else {
         int minToConquer = 0;
@@ -93,7 +100,7 @@ int Attack(int PlayerID) {
         AddBuilding(&Buildings(P(S, PlayerID)), idAttack);
         
         HasAttacked(AElmt(ArrBuilding(S), id)) = true;
-        printf("Bangunan menjadi milikmu!\n");
+        reverse(); printf("CONQUERED."); normal();
         return 0;
     }
 }
@@ -104,17 +111,16 @@ int LevelUpBuilding(Building * B){
     if(Troop(*B) >= minToLevelUp && Level(*B) < 4){
         Troop(*B) -= minToLevelUp;
         ChangeBaseProperty(B, GetBase(*B, Level(*B) + 1));
-        printf("Level ");
-        PrintBuildingType(*B);
-        printf("-mu meningkat menjadi %d!\n", Level(*B));
+        reverse(); printf("BUILDING LEVELED UP TO LEVEL %d", Level(*B)); normal();
+        printf("\n");
         return 0;
     } else {
         if (Level(*B) < 4) {
-            printf("Jumlah pasukan ");
-            PrintBuildingType(*B);
-            printf(" kurang untuk level up\n");
+            reverse(); printf("INSUFFICIENT TROOPS"); normal();
+            printf("\n");
         } else {
-            printf("Sudah max level gan\n");
+            reverse(); printf("MAXED"); normal();
+            printf("\n");
         }
         return 1;
     }
@@ -124,10 +130,10 @@ int LevelUp(int PlayerID){
     PrintPlayerBuildings(PlayerID);
     int pick = 0;
     int NBuild = LNbElmt(Buildings(P(S, PlayerID)));
-    printf("Bangunan yang akan di level up: ");
+    printf("BUILDING TO LEVEL UP: ");
     InputInt(&pick);
     if (pick <= 0 || pick > NBuild) {
-        printf("Pilihan tidak valid.\n");
+        printf("Invalid input.\n");
         return 1;
     }
     int id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
@@ -140,50 +146,55 @@ int Move(int PlayerID){
     int id = 0;
     int NBuild = LNbElmt(Buildings(P(S, PlayerID)));
 
-    printf("Bangunan yang digunakan untuk mengirim pasukan: ");
+    printf("SENDER: ");
     InputInt(&pick);
     if (pick <= 0 || pick > NBuild) {
-        printf("Pilihan tidak valid.\n");
+        printf("Invalid input.\n");
         return 1;
     }
     else {
         id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
         if (HasMoved(AElmt(ArrBuilding(S), id))) {
-            printf("Bangunan tersebut sudah melakukan pemindahan pasukan dalam giliran ini!\n");
+            printf("That building has already moved its troops this turn.\n");
             return 1;
         }
     }
     id = LGetNthInfo(Buildings(P(S, PlayerID)), pick);
-    
-    printf("Daftar bangunan terdekat:\n");
+
+    clear();
+    PrintPetaMoveable(id);
+    printf("REACHABLE:\n");
     int NDegree = OurDegree(G, id);
+    if (NDegree == 0) {
+        reverse(); printf("NONE"); normal();
+        return 1;
+    }
     PrintOurBuilding(id);
-    if (NDegree == 0) return 1;
     int pickMove = 0;
     int moveTroops = 0;
 
-    printf("Bangunan yang akan menerima: ");
+    printf("RECEIVER: ");
     InputInt(&pickMove);
     if (pickMove <= 0 || pickMove > NDegree ) {
-        printf("Pilihan tidak valid.\n");
+        printf("Invalid input.\n");
         return 1;
     }
     
-    printf("Jumlah Pasukan (%d): ", Troop(AElmt(ArrBuilding(S), id)));
+    printf("TROOPS MOVED [Max %d]: ", Troop(AElmt(ArrBuilding(S), id)));
 
     InputInt(&moveTroops);
     if (moveTroops > Troop(AElmt(ArrBuilding(S), id)) || moveTroops <= 0){
-        printf("Jumlah pasukan tidak valid.\n");
+        printf("Invalid input.\n");
         return 1;
     }
     else {
         int idTarget = GGetOurNthInfo(G, id, pickMove);
         Troop(AElmt(ArrBuilding(S), idTarget)) += moveTroops;
         Troop(AElmt(ArrBuilding(S), id)) -= moveTroops;
-        printf("%d pasukan dari ", moveTroops);
+        printf("%d TROOP(S) FROM ", moveTroops);
         PrintBuildingType(AElmt(ArrBuilding(S), id)); printf(" ");
         TulisPoint(Pos(AElmt(ArrBuilding(S), id)));
-        printf(" telah berpindah ke ");
+        printf(" SENT TO ");
         PrintBuildingType(AElmt(ArrBuilding(S), idTarget)); printf(" ");
         TulisPoint(Pos(AElmt(ArrBuilding(S), idTarget)));
     }
@@ -225,7 +236,8 @@ void Undo() {
     } else {
         SPush(&RedoStack, S);
         SPop(&UndoStack, &S);
-        printf("Undo succeeded.\n");
+        reverse(); printf("UNDO SUCCEEDED"); normal();
+        printf("\n");
     }
 }
 
@@ -235,7 +247,8 @@ void Redo() {
     } else {
         SPush(&UndoStack, S);
         SPop(&RedoStack, &S);
-        printf("Redo succeeded.\n");
+        reverse(); printf("REDO SUCCEEDED\n"); normal();
+        printf("\n");
     }
 }
 
@@ -271,7 +284,6 @@ int GetLoadedFilename(char* filename) {
             printf("Invalid file number\n.");
             return 1;
         } else {
-            printf("wtf\n");
             Kata dir; CopyKata(StrToKata("data/save/"), &dir);
             Kata ext; CopyKata(StrToKata(".dat"), &ext);
             Kata completeDir;
@@ -389,4 +401,5 @@ void EndTurn(int PlayerID){
     RegenTroop();
     SCreateEmpty(&UndoStack);
     SCreateEmpty(&RedoStack);
+    reverse(); printf("TURN ENDED"); normal(); ADV();
 }

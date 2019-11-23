@@ -96,6 +96,7 @@ int main() {
       clear();
       StartGame();
     } else if (IsStrEQ(cmd, "LOAD")) {
+      clear();
       if (Load() == 0) {
         DoGame();
       } else {
@@ -104,7 +105,7 @@ int main() {
     } else if (IsStrEQ(cmd, "EXIT")) {
       printf("So long...");
     } else {
-  magenta(); printf("\t\t\t\t\t\t         INVALID\n"); normal();
+      magenta(); printf("\t\t\t   >       INVALID\n"); normal();
       ADV();
     }
   } while (!IsStrEQ(cmd, "EXIT"));

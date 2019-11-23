@@ -50,6 +50,7 @@ int SearchIdx(List L, Linfotype X)
     }
     else P = LNext(P);
   }
+  if (!found) cnt = 0;
   return cnt;
 }
 

@@ -44,7 +44,7 @@ void PrintPlayerStatus() {
     if (pid == 1) blue();
     else red();
     reverse();
-    printf("\t\tTotal Troops");
+    printf("\t\tTOTAL TROOPS");
     normal();
     printf(" %d | ", tot);
     if (pid == 1) {
@@ -138,7 +138,7 @@ void PrintStatus() {
     PrintPeta();
     PrintPlayerStatus();
     PrintPlayerBuildings(CurPlayerID(S));
-    printf("SKILL: ");
+    reverse(); printf("SKILL"); normal(); printf(" ");
     if (QIsEmpty(Skills(P(S, CurPlayerID(S))))) {
         printf("None\n");
     } else {
@@ -149,7 +149,9 @@ void PrintStatus() {
     } else {
         red();
     }
-    printf("COMMANDS: ATTACK | LEVEL_UP | SKILL | MOVE | UNDO | REDO | SAVE | END_TURN | EXIT\n");
+    reverse(); printf("COMMANDS"); normal();
+    if (CurPlayerID(S) == 1) blue(); else red();
+    printf(" ATTACK | LEVEL_UP | SKILL | MOVE | UNDO | REDO | SAVE | END_TURN | EXIT\n");
     normal();
 }
 
@@ -165,7 +167,16 @@ void DoGame() {
         } else {
             red();
         }
-        printf(">>> ");
+        reverse();
+        printf(">>>");
+        normal();
+        if (CurPlayerID(S) == 1) {
+            blue();
+        } else {
+            red();
+        }
+        printf(" ");
+        
         InputKata(&command);
         normal();
         KataToArrChar(command, effCommand);
@@ -210,7 +221,7 @@ void DoGame() {
             getInstantReinforcement(S);
             EndTurn(CurPlayerID(S));
         } else {
-            printf("Command tidak valid.\n");
+            reverse(); printf("INVALID COMMAND"); normal();
             ADV();
         }
     } while (!IsStrEQ(effCommand, "EXIT")  && loop);
