@@ -82,6 +82,7 @@ int main() {
   clear();
 
   char cmd[50];
+  // Input Main Menu
   do {
     Kata inp;
     clear();

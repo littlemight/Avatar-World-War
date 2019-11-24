@@ -1,5 +1,6 @@
 #include "skill.h"
 
+// Do Skill
 void doInstantUpgrade(int PlayerID) {
     addressList cur = LFirst(Buildings(P(S, PlayerID)));
     while (cur != NilList) {
@@ -23,7 +24,6 @@ void doShield(int PlayerID) {
     return;
 }
 
-// TAMBAH GET CRITICAL HIT DI SINI
 void doExtraTurn(int PlayerID) {
     PTurn(P(S, PlayerID))++;
     printf("You have 1 more extra turn.\n");
@@ -68,6 +68,8 @@ void doBarrage(int PlayerID) {
     return;
 }
 
+
+// Get Skill
 void getShield(State SBef, State SNow){
     int getID = CurPlayerID(SNow) % 2 + 1; 
     if(LNbElmt(Buildings(P(SBef, getID)))==3 && LNbElmt(Buildings(P(SNow, getID)))==2){
@@ -181,12 +183,3 @@ void getSkills(State SBef, State SNow){
     getBarrage(SBef, SNow);
     getExtraTurn(SBef, SNow);
 }
-/* Ambigu :
-  > Instart Reinf. itu setiap turn ada player yg lv 4 semua buildnya? -> maybe checking ny acuma diakhir turn aja (?) bukan per aksi
-  > extraturn termasuk bisa di undo ke sebelum ny aapa engga
-   ( corner case pas extra turn trus aktifin skill extraturn lagi)
-  > 
-
-  > Sistematika urutan nge add skill 
-
-*/

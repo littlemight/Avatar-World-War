@@ -177,10 +177,10 @@ void PrintInfo (List L)
   addressList cur = LFirst(L);
   printf("[");
   while (cur != NilList) {
-    printf("%d", LInfo(cur));
+    printf(" %d", LInfo(cur));
     cur = LNext(cur);
   }
-  printf("]");
+  printf(" ]");
 }
 
 void SavePrintList (FILE *file, List L)

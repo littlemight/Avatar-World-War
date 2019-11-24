@@ -79,12 +79,6 @@ int ToInteger() {
   return ret;
 }
 
-void InputIntBef(int* X) {
-  if (ToInteger() != -1) {
-    *X = ToInteger();
-  }
-}
-
 void InputInt(int* X) {
   ADVKATA();
   if (ToInteger() != -1) {
@@ -123,14 +117,9 @@ boolean EQKata(Kata X, Kata Y) {
 }
 
 void SavePrintKata(FILE* file, Kata X) { // prints kata tanpa karakter apapun di depan/belakang
-    // fprintf(file,  "%d\n", X.Length);
     for (int i = 1; i <= X.Length; i++) {
       fprintf(file, "%c", X.TabKata[i]);
     }
-    // if (X.Length == 0) {
-    //   fprintf(file,  "NONE");
-    // }
-    // fprintf(file, "\n");
 }
 
 void PrintKata(Kata X) { // prints kata tanpa karakter apapun di depan/belakang
@@ -196,15 +185,4 @@ void ConcatKata(Kata K1, Kata K2, Kata *KOut) {
     }
   }
   (*KOut).TabKata[(*KOut).Length + 1] = 0;
-}
-
-void CopyStr(char *Cin, char *Cout) { // substitute strcmp
-  int i = 0;
-  while (1) {
-    Cout[i] = Cin[i];
-    if (Cout[i] == '\0') break;
-    printf("%d\n", i);
-    i++;
-  }
-  printf("str success copy\n");
 }

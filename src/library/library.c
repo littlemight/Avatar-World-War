@@ -1,13 +1,16 @@
 #include "library.h"
+// Library file for global variable access
 
+// Level database
 Building CASTLE[5];
 Building TOWER[5];
 Building FORT[5];
 Building VILLAGE[5];
 
+// Main game core variables
 State S;
 Graph G;
-Matrix Peta, AdjMat; // AdjMat buat gampang simpan ke file
+Matrix Peta, AdjMat; // AdjMat to save to file
 Stack UndoStack, RedoStack;
 Kata InstantUpgrade, Shield, ExtraTurn, AttackUp, CriticalHit, InstantReinforcement, Barrage;
 
@@ -242,6 +245,7 @@ void LoadSaved(){
     MakeState(ArrBuilding, P, curplayer, &S);
 }
 
+// Find which "region" id is connected to
 int FindConnected(int id) {
     adrNode Pn = SearchNode(G, id);
     boolean c1 = false, c2 = false;
@@ -784,6 +788,7 @@ void PrintNeighbourBuilding(int BuildID)
     }
 }
 
+// Creates list of neighbours with different ownership
 List NeighbourList(int BuildID) {
     adrNode Pn = SearchNode(G, BuildID);
     adrSuccNode P = Trail(Pn);
@@ -802,6 +807,7 @@ List NeighbourList(int BuildID) {
     return ret;
 }
 
+// Creates list of neighbours with different ownership
 List OurList(int BuildID) {
     adrNode Pn = SearchNode(G, BuildID);
     adrSuccNode P = Trail(Pn);

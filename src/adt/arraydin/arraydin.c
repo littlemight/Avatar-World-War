@@ -67,34 +67,16 @@ IdxType Search1(TabBuilding T, AElType X) {
   return ret;
 }
 
-// void BacaIsi(TabBuilding *T)
-// {
-//   int n, x;
-//   do {
-//     scanf("%d", &n);
-//   } while (n < 0 || n > MaxElement(*T));
-//   ANeff(*T) = n;
-//   if (n != 0) {
-//     for (IdxType i = GetFirstIdx(*T); i <= GetLastIdx(*T); i++) {
-//       scanf("%d", &x);
-//       AElmt(*T, i) = x;
-//     }
-//   }
-// }
 
 void TulisIsiTab(TabBuilding T)
 {
   if (AIsEmpty(T)) {
     printf("[]");
   } else {
-    printf("[");
     for (IdxType i = GetFirstIdx(T); i <= GetLastIdx(T); i++) {
-      printf("%d", AElmt(T, i).Defense);
-      if (i != GetLastIdx(T)) {
-        printf(",");
-      }
+      PrintBuilding(AElmt(T, i));
+      printf("\n");
     }
-    printf("]");
   }
 }
 

@@ -22,5 +22,9 @@ int main () {
 		QDel(&Q2, &X);
 		PrintKata(X); printf("\n");
 	}
+
+	if (QIsEmpty(Q2)) {
+		printf("Emptied\n");
+	}
 	return 0;
 }
