@@ -22,6 +22,7 @@
     "limits.h": "c",
     "stack.h": "c",
     "pcolor.h": "c",
-    "state.h": "c"
+    "state.h": "c",
+    "utility.h": "c"
   }
 }

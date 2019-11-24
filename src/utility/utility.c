@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "../utility/utility.h"
+#include "utility.h"
 
 void LineBr() {
   printf("--------------------------------------------------\n");
