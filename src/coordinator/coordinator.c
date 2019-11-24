@@ -231,11 +231,13 @@ boolean IsWinGame(){
     boolean loop = true;
     if(LIsEmpty(Buildings(P(S, 1)))){
         clear();
-        printf("Selamat "); PrintKata(Username(P(S, 2))); printf(" memenangkan pertandingan dunia Avatar!!\n");
+        red(); PrintKata(Username(P(S, 2))); normal(); printf(" "); reverse(); printf("WON"); normal();
+        printf("\n");
         loop = false;
     } else if(LIsEmpty(Buildings(P(S, 2)))){
         clear();
-        printf("Selamat "); PrintKata(Username(P(S, 1))); printf(" memenangkan pertandingan dunia Avatar!!\n");
+        blue(); PrintKata(Username(P(S, 1))); normal(); printf(" "); reverse(); printf("WON\n"); normal();
+        printf("\n");
         loop = false;
     }
     return loop;    

@@ -101,6 +101,7 @@ int Attack(int PlayerID) {
         
         HasAttacked(AElmt(ArrBuilding(S), id)) = true;
         reverse(); printf("CONQUERED."); normal();
+        printf("\n");
         return 0;
     }
 }
