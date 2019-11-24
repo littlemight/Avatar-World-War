@@ -25,6 +25,7 @@ typedef struct {
 void MakeMatrix(Matrix *M, int RIn, int CIn);
 void CopyMatrix (Matrix MIn, Matrix * MHsl);
 void SavePrintMatrix(FILE *file, Matrix M);
+void BacaMatrix(Matrix *M);
 boolean IsPointValid (Matrix M, Point P);
 MEltype NilaiMatrixDariPoint (Matrix * M, Point P);
 void TulisMatrix(Matrix M);

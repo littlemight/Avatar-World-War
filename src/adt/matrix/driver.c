@@ -3,11 +3,12 @@
 
 int main() {
 	STARTKATA(0);
-	MATRIKS M1;
-	MATRIKS M2;
-    POINT P1;
+	Matrix M1;
+	Matrix M2;
+    Point P1;
     BacaPoint(&P1);
     TulisPoint(P1);
+    printf("\n");
 
     MakeMatrix(&M1,7,7);
     MakeMatrix(&M2,7,7);
@@ -22,8 +23,5 @@ int main() {
     NBBuildingMatrix(M1);
 
     printf("\n");
-
-
-
 	return 0;
 }

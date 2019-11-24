@@ -1,9 +1,8 @@
 #include "mesinkata.h"
 
 int main(){
-    STARTKATA(0);
     printf("Fungsi STARTKATA() : \n");
-    if (STARTKATA("mesinkata/driver.txt")){
+    if (STARTKATA("src/adt/mesinkata/driver.txt")){
         printf("TRUE\n\n");
     }
     else{
@@ -21,20 +20,18 @@ int main(){
     printf("\n\nFungsi KCreateEmpty(Kata) : \n");
     KCreateEmpty(&CKata);
     printf("Current Kata : "); PrintKata(CKata);
+    printf("Nge print kosong\n");
 
     printf("\n\nFungsi ADVKATA() : \n");
     ADVKATA();
     printf("Current Character : %c\n", CC);
-    printf("Current Kata : %s"); PrintKata(CKata);
+    printf("Current Kata "); PrintKata(CKata);
 
-    printf("\n\nFugsi ToInteger()\n");
+    printf("\n\nFungsi ToInteger()\n");
     printf("Current Value : %d", ToInteger());
 
-    int x;
-    printf("\n\nFungsi InputIntBef(&x)\n");
-    InputIntBef(&x);
-    printf("Current Value : %d", x);
 
+    int x;
     printf("\n\nFungsi InputInt(&x)\n");
     InputInt(&x);
     printf("Current Value : %d\n\n", x);
@@ -44,24 +41,24 @@ int main(){
     InputKata(&word);
     printf("word Value : "); PrintKata(word);
 
-    printf("Fungsi cek Kata\n");
+    printf("\nFungsi cek Kata\n");
     Kata word2;
     printf("InputKata Baru\n");
     InputKata(&word2);
-    printf("word2 value: \n", ); PrintKata(word2);
+    printf("word2 value: "); PrintKata(word2);
     if (EQKata(word,word2)) {
-        printf("kata sama\n");
+        printf("\nkata sama\n");
     } else {
-        printf("kata berbeda\n");
+        printf("\nkata berbeda\n");
     }
 
-    char eff;
-    printf("Fungsi convert kata ke array char");
-    KataToArrChar(word,&eff);
+    char eff[50];
+    printf("Fungsi convert kata ke array char\n");
+    KataToArrChar(word, &eff);
 
-    char eff2;
+    char eff2[50];
     printf("fungsi convert kata ke array char bag2\n");
-    KataToArrChar(word2,&eff2);
+    KataToArrChar(word2, &eff2);
 
     if (IsStrEQ(eff,eff2)) {
         printf("string sama\n");
@@ -69,22 +66,23 @@ int main(){
         printf("string beda\n");
     }
 
-    StrToKata(&eff);
-    StrToKata(&eff2);
+    printf("%s %s\n", eff, eff2);
+    PrintKata(StrToKata(eff)); printf(" ");
+    PrintKata(StrToKata(eff2));
 
+    printf("\n=====\n");
     Kata copy1;
     CopyKata(word, &copy1);
+    PrintKata(copy1); printf(' ');
 
     Kata copy2;
     CopyKata(word, &copy2);
+    PrintKata(copy2); printf(' ');
 
     Kata copy3;
     ConcatKata(copy1, copy2, &copy3);
-
-    char concat3;
-    CopyStr(&eff, &concat3);
-
-    printf("\n");
+    PrintKata(copy3);
+    printf('\n');
 
     return 0;
 }
