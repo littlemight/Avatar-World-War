@@ -12,14 +12,14 @@ void PrintSkills() {
         if (cur > mx) cur -= mx;
         if (cur == aw) {
             if (CurPlayerID(S) == 1) {
-                printf("%s", BLUE);
+                blue();
             } else {
-                printf("%s", RED);
+                red();
             }
         }
        PrintKata(Skills(P(S, CurPlayerID(S))).T[cur]);
         if (cur == aw) {
-            printf("%s", NORMAL);
+            normal();
         }
         if (i < sz) {
             printf(" |");
@@ -40,26 +40,36 @@ void PrintPlayerStatus() {
             nEnm++;
         }
     }
-    if (pid == 1) printf("%s", CYAN);
-    else printf("%s", MAGENTA);
-    printf("\t\tTotal Troops: ");
-    printf("%s", NORMAL);
-    printf("%d | ", tot);
+
+    if (pid == 1) blue();
+    else red();
+    reverse();
+    printf("\t\tTOTAL TROOPS");
+    normal();
+    printf(" %d | ", tot);
     if (pid == 1) {
-        printf("%s", BLUE);
+        blue_bg();
     } else {
-        printf("%s", RED);
+        blue();
     }
-    PrintKata(Username(P(S, pid)));
-    printf("%s", NORMAL);
+
+    if (pid == 2) {
+        int tm = nOwn;
+        nOwn = nEnm;
+        nEnm = tm;
+    }
+
+    PrintKata(Username(P(S, 1)));
+    normal();
     printf(" %d | ", nOwn);
     if (eid == 1) {
-        printf("%s", BLUE);
+        red_bg();
     } else {
-        printf("%s", RED);
+        red();
     }
-    PrintKata(Username(P(S, eid)));
-    printf("%s", NORMAL);    
+
+    PrintKata(Username(P(S, 2)));
+    normal();    
     printf(" %d", nEnm);
     printf("\n");
 
@@ -68,57 +78,58 @@ void PrintPlayerStatus() {
     printf("SHIELD: ");
     if (PShield(P(S, CurPlayerID(S)))) {
         if (CurPlayerID(S) == 1) {
-            printf("%s", BLUE);
+            blue();
         } else {
-            printf("%s", RED);
+            red();
         }
     }
     printf("%d", PShield(P(S, CurPlayerID(S))));
     if (PShield(P(S, CurPlayerID(S)))) {
-        printf("%s", NORMAL);
+        normal();
     }
 
     printf(" | ");
     printf("EXTURN: ");
     if (PTurn(P(S, CurPlayerID(S))) - 1 > 0) {
         if (CurPlayerID(S) == 1) {
-            printf("%s", BLUE);
+            blue();
         } else {
-            printf("%s", RED);
+            red();
         }
     }
     printf("%d", PTurn(P(S, CurPlayerID(S))) - 1);
     if (PTurn(P(S, CurPlayerID(S))) - 1 > 0) {
-        printf("%s", NORMAL);
+        normal();
     }
 
     printf(" | ");
     if (PAttackUp(P(S, CurPlayerID(S)))) {
         if (CurPlayerID(S) == 1) {
-            printf("%s", BLUE);
+            blue();
         } else {
-            printf("%s", RED);
+            red();
         }
     }
     printf("AU");
     if (PAttackUp(P(S, CurPlayerID(S)))) {
-        printf("%s", NORMAL);
+        normal();
     }
 
     printf(" | ");
     if (PCriticalHit(P(S, CurPlayerID(S)))) {
         if (CurPlayerID(S) == 1) {
-            printf("%s", BLUE);
+            blue();
         } else {
-            printf("%s", RED);
+            red();
         }
     }
     printf("CH");
     if (PCriticalHit(P(S, CurPlayerID(S)))) {
-        printf("%s", NORMAL);
+        normal();
     }
     printf("]");
     printf("\n");
+    normal();
 
 }
 
@@ -127,19 +138,21 @@ void PrintStatus() {
     PrintPeta();
     PrintPlayerStatus();
     PrintPlayerBuildings(CurPlayerID(S));
-    printf("SKILL: ");
+    reverse(); printf("SKILL"); normal(); printf(" ");
     if (QIsEmpty(Skills(P(S, CurPlayerID(S))))) {
         printf("None\n");
     } else {
         PrintSkills();
     }
     if (CurPlayerID(S) == 1) {
-        printf("%s", BLUE);
+        blue();
     } else {
-        printf("%s", RED);
+        red();
     }
-    printf("COMMANDS: ATTACK | LEVEL_UP | SKILL | MOVE | UNDO | REDO | SAVE | END_TURN | EXIT\n");
-    printf("%s", NORMAL);
+    reverse(); printf("COMMANDS"); normal();
+    if (CurPlayerID(S) == 1) blue(); else red();
+    printf(" ATTACK | LEVEL_UP | SKILL | MOVE | UNDO | REDO | SAVE | END_TURN | EXIT\n");
+    normal();
 }
 
 void DoGame() {
@@ -150,13 +163,22 @@ void DoGame() {
         PrintStatus();
         // printf(">>> ENTER COMMAND: ");
         if (CurPlayerID(S) == 1) {
-            printf("%s", BLUE);
+            blue();
         } else {
-            printf("%s", RED);
+            red();
         }
-        printf(">>> ");
+        reverse();
+        printf(">>>");
+        normal();
+        if (CurPlayerID(S) == 1) {
+            blue();
+        } else {
+            red();
+        }
+        printf(" ");
+        
         InputKata(&command);
-        printf("%s", NORMAL);
+        normal();
         KataToArrChar(command, effCommand);
         if (IsStrEQ(effCommand, "ATTACK")) {
             SPush(&UndoStack, S);
@@ -199,7 +221,7 @@ void DoGame() {
             getInstantReinforcement(S);
             EndTurn(CurPlayerID(S));
         } else {
-            printf("Command tidak valid.\n");
+            reverse(); printf("INVALID COMMAND"); normal();
             ADV();
         }
     } while (!IsStrEQ(effCommand, "EXIT")  && loop);

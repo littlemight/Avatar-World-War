@@ -54,13 +54,13 @@ void ChangeBaseProperty(Building *B, Building Base) {
 void PrintBuildingType(Building B){
     switch (Type(B)) {
         case 'C':
-            printf("Castle");
+            printf("Castle ");
             break;
         case 'T':
-            printf("Tower");
+            printf("Tower  ");
             break;
         case 'F':
-            printf("Fort");
+            printf("Fort   ");
             break;
         case 'V':
             printf("Village");
@@ -71,7 +71,9 @@ void PrintBuildingType(Building B){
 void PrintBuilding(Building B) {
     PrintBuildingType(B);
     printf(" ");
+    if (Row((B).Pos) < 10) printf(" ");
     TulisPoint((B).Pos); 
+    if (Col((B).Pos) < 10) printf(" ");
     printf(" | Lv. %d |", Level(B)); 
     printf(" %d", Troop(B));
 }

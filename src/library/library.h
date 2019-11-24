@@ -42,6 +42,8 @@ void LoadSaved();
 
 /** ======================================== PRINT  ========================================  **/
 void PrintPeta();
+void PrintPetaAttackable(int id);
+void PrintPetaMoveable(int id);
 void PrintBuildingExtra(Building B);
 void PrintPlayerBuildings(int curPlayerID); // mencetak semua building pemain
 void PrintNeighbourBuilding(int BuildID); // mencetak semua building yang tetangga dan dimiliki oleh pemilik yg sama
@@ -49,6 +51,9 @@ void PrintOurBuilding(int BuildID); // mencetak building yang tetangga dan dimil
 /** ======================================== ----  ========================================  **/
 
 /** ======================================== NEIGHBOURHOOD TOOLS  ========================================  **/
+List NeighbourList(int BuildID);
+List OurList(int BuildID);
+
 int GGetNeighbourNthInfo(Graph G, infotypeGraph X, int n);
 
 int GGetOurNthInfo(Graph G, infotypeGraph X, int n);
