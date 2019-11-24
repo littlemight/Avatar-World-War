@@ -54,11 +54,11 @@ int main(){
 
     char eff[50];
     printf("Fungsi convert kata ke array char\n");
-    KataToArrChar(word, &eff);
+    KataToArrChar(word, eff);
 
     char eff2[50];
     printf("fungsi convert kata ke array char bag2\n");
-    KataToArrChar(word2, &eff2);
+    KataToArrChar(word2, eff2);
 
     if (IsStrEQ(eff,eff2)) {
         printf("string sama\n");
@@ -73,16 +73,16 @@ int main(){
     printf("\n=====\n");
     Kata copy1;
     CopyKata(word, &copy1);
-    PrintKata(copy1); printf(' ');
+    PrintKata(copy1); printf(" ");
 
     Kata copy2;
     CopyKata(word, &copy2);
-    PrintKata(copy2); printf(' ');
+    PrintKata(copy2); printf(" ");
 
     Kata copy3;
     ConcatKata(copy1, copy2, &copy3);
     PrintKata(copy3);
-    printf('\n');
+    printf("\n");
 
     return 0;
 }

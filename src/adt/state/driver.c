@@ -61,11 +61,12 @@ int main(){
             printf("enemy player - Player %d:\n", p);
         }
         addressList cur = LFirst(Buildings(P(S, p)));
+        int cnt = 1;
         for (int i = 1; i <= 4; i++) {
             Building B = AElmt(ArrBuilding, i);
             if (OwnerID(B) != p) continue;
             if (i < 10) printf(" ");
-            printf("%d. ", i);
+            printf("%d. ", cnt++);
             printf(" ");
             if (Row((B).Pos) < 10) printf(" ");
             TulisPoint((B).Pos); 
