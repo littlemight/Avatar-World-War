@@ -4,7 +4,7 @@ boolean EndKata;
 Kata CKata;
 
 boolean IsBlank() {
-  return (CC == BLANK || CC == 10 || CC == 0);
+  return (CC == BLANK || CC == 10 || CC == 0 || CC == 13);
 }
 
 void IgnoreBlank() {
@@ -28,7 +28,6 @@ boolean STARTKATA(char* filename) {
     EndKata = true;
   } else {
     EndKata = false;
-    // if (filename != 0) SalinKata();
   }
   return valid;
 }
@@ -45,7 +44,6 @@ void ADVKATA() {
     EndKata = true;
   } else {
     SalinKata();
-    // IgnoreBlank();
   }
 }
 
