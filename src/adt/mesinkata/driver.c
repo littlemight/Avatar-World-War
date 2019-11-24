@@ -48,7 +48,7 @@ int main(){
     Kata word2;
     printf("InputKata Baru\n");
     InputKata(&word2);
-    printf("word2 value: \n", ); PrintKata(word2);
+    printf("word2 value: \n"); PrintKata(word2);
     if (EQKata(word,word2)) {
         printf("kata sama\n");
     } else {

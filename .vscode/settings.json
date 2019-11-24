@@ -23,6 +23,7 @@
     "stack.h": "c",
     "pcolor.h": "c",
     "state.h": "c",
-    "utility.h": "c"
+    "utility.h": "c",
+    "queue.h": "c"
   }
 }

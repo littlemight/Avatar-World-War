@@ -18,8 +18,11 @@ void MakeState(TabBuilding InpArr, Player P[], int PlayerID, State *S) {
 }
 
 void PrintState(State S) {
+    printf("Current Player: %d\n", CurPlayerID(S));
+    printf("List of buildings:\n");
     for (int i = 1; i <= ANbElmt(ArrBuilding(S)); i++) {
         PrintBuilding(AElmt(ArrBuilding(S), i));
+        printf("\n");
     }
 }
 
