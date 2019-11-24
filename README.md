@@ -1,33 +1,17 @@
-# HELP
-## BANTU BIKIN DRIVER YAA
-Bikin driver untuk tiap adt yang ada di folder "src/adt", tolong bantu bikinin ya
-1. Bikin driver nya di dalam folder adt/<nama adt>, terus namanya <b>HARUS</b> driver.c
-Contoh  
+# Avatar World War
+## Program Utama
+Untuk menjalankan program, dapat mengetikkan perintah berikut di directory root dari folder ini
 ```
---bin
---src
-----adt
-------point
---------point.c
---------point.h
---------driver.c
-```
-Terus tambahin STARTKATA(0); di dalam blok program main kalian
-```
-#include "<nama adt>.h"
-int main() {
-  STARTKATA(0);
-  
-  // program driver
-  return 0; 
-}
+run
 ```
 
-Biar gampang kalian nge run nya, jalaninnya kaya gini
+## Driver ADT
+Driver setiap program dapat dijalankan dengan menjalankan perintah berikut di command line
 ```
 > rundriver <nama adt>
 ```
-## Contoh
+
+### Contoh
 ```
 > rundriver point
 Compiling driver for point...
@@ -38,7 +22,12 @@ Masukkin 2 angka: 12 23
 (12,23)
 ```
 
-<b>SCRIPT NYA CUMAN BISA DI WINDOWS YA SEKARANG</b>
+Script yang digunakan adalah script batch yang hanya dapat bekerja di windows.
 
-<b>Kalo ga bikin driver, bantuin laporan ya, pls</b>
-https://docs.google.com/document/d/1rRFfV6kpo0Hjq70rqqjELmAHR6aPr-9_whHb9z-5UhY/edit
+## Anggota Kelompok
+1. Yudy Valentino (13517  128)
+2. Faris Fadhillah (13518026)
+3. Muhammad Ziad Rahmatullah (13518032)
+4. Jones Napoleon Autumn (13518086)
+5. Michel Fang (13518137)
+6. Naufal Prima Yoriko (13518146)

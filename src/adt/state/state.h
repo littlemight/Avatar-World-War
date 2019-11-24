@@ -7,16 +7,12 @@
 #include "../player/player.h"
 
 typedef struct {
-    TabBuilding ArrBuilding; // copy function done
-    // Matrix Peta; // copy done aman
-    // Graph G; // copy graph aman
-    Player P[3]; // copy player aman
-    int PlayerID; // aman
+    TabBuilding ArrBuilding;
+    Player P[3];
+    int PlayerID;
 } State;
 
 #define ArrBuilding(S) (S).ArrBuilding
-// #define Peta (S).Peta
-// #define G (S).G
 #define P(S, i) (S).P[(i)]
 #define CurPlayerID(S) (S).PlayerID
 

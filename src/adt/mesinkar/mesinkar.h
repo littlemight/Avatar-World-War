@@ -8,10 +8,6 @@
 #include <stdio.h>
 
 #define MARK '#'
-/* State Mesin */
-
-// extern char CC;
-// extern boolean EOP;
 
 extern char CC;
 extern boolean EOP;

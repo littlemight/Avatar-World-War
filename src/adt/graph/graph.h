@@ -52,5 +52,4 @@ adrSuccNode SearchEdge(Graph G, infotypeGraph prec, infotypeGraph succ); // menc
 void InsertNode(Graph* G, infotypeGraph X, adrNode* Pn); // memasang X ke akhir G
 void InsertEdge(Graph* G, infotypeGraph prec, infotypeGraph succ); // memasang succ ke akhir prec
 infotypeGraph GetFirstSuccInfo(Graph G, infotypeGraph prec); // mencari info succ simpul pertama dari node
-void CopyGraph(Graph Gin, Graph *Gout);
 #endif

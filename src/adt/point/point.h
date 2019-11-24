@@ -21,4 +21,5 @@ void BacaPoint(Point *P);
 void TulisPoint(Point P);
 boolean IsEQPoint(Point P1, Point P2);
 void CopyPoint(Point Pin, Point *Pout);
+
 #endif

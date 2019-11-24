@@ -5,13 +5,12 @@ int main () {
 	/*KAMUS*/
 	Stack S;
 	Sinfotype X,Y;
+	SCreateEmpty(&S);
+	TabBuilding ArrBuilding;
 
 	/*ALGORITMA*/
-	SCreateEmpty(&S);
-	scanf("%d\n",&X);
-	scanf("%d\n",&Y);
-	SPush(&S,X);
-	SPush(&S,Y);
-	SPop(&S,&Y);
+	AMakeEmpty(&ArrBuilding, 10);
+	Player P[3];
+		
 	return 0;
 }

@@ -22,7 +22,6 @@ boolean START(char* filename) {
         pita = stdin;
     } else {
         pita = fopen(filename, "r");
-        // ADV();
     }
     return (pita != 0);
 }

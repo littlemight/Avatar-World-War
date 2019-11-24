@@ -191,12 +191,7 @@ int Move(int PlayerID){
         int idTarget = GGetOurNthInfo(G, id, pickMove);
         Troop(AElmt(ArrBuilding(S), idTarget)) += moveTroops;
         Troop(AElmt(ArrBuilding(S), id)) -= moveTroops;
-        printf("%d TROOP(S) FROM ", moveTroops);
-        PrintBuildingType(AElmt(ArrBuilding(S), id)); printf(" ");
-        TulisPoint(Pos(AElmt(ArrBuilding(S), id)));
-        printf(" SENT TO ");
-        PrintBuildingType(AElmt(ArrBuilding(S), idTarget)); printf(" ");
-        TulisPoint(Pos(AElmt(ArrBuilding(S), idTarget)));
+        printf("%d TROOP(S) SENT\n", moveTroops);
     }
     HasMoved(AElmt(ArrBuilding(S), id)) = true;
     return 0;

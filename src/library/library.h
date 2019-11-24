@@ -33,9 +33,7 @@ extern Kata Barrage;
 void MakeAllBase();
 
 Building GetBase(Building B, int Level);
-
 void InitKamusSkill();
-
 void LoadInit();
 void LoadSaved();
 /** ======================================== ----  ========================================  **/
@@ -53,19 +51,15 @@ void PrintOurBuilding(int BuildID); // mencetak building yang tetangga dan dimil
 /** ======================================== NEIGHBOURHOOD TOOLS  ========================================  **/
 List NeighbourList(int BuildID);
 List OurList(int BuildID);
-
 int GGetNeighbourNthInfo(Graph G, infotypeGraph X, int n);
-
 int GGetOurNthInfo(Graph G, infotypeGraph X, int n);
-
 int NeighbourDegree(Graph G, infotypeGraph X);
-
 int OurDegree(Graph G, infotypeGraph X);
 /** ======================================== ----  ========================================  **/
 
 /** ======================================== MEKANISME  ========================================  **/
 void RegenTroop();
-// }
 // /** ======================================== ----  ========================================  **/
 
+/** ======================================== SAVE ========================================  **/
 void SavePrintGame(FILE *file, Matrix Peta, Matrix AdjMat, State S, Stack UndoStack);
